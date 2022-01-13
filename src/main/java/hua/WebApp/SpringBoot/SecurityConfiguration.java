@@ -1,4 +1,4 @@
-package io.javabrains.springsecurityjpa;
+package hua.WebApp.SpringBoot;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -37,12 +37,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/addRequest").hasRole("USER")
-                .antMatchers("/user").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/").permitAll()
-               // .and().formLogin();
-                .and().csrf().disable().formLogin().disable();
+                .antMatchers("/requests").hasRole("STUDENT")
+                .antMatchers("/addRequest").hasRole("STUDENT")
+                .antMatchers("/editRequest").hasRole("STUDENT")
+                .antMatchers("deleteRequest/{requestId}").hasRole("STUDENT")
+                .antMatchers("/setRequestStatus").hasRole("PROFESSOR")
+                .antMatchers("/addLetter").hasRole("PROFESSOR")
+                .antMatchers("/editLetter/{letterId}").hasRole("PROFESSOR")
+                .antMatchers("/deleteLetter/{letterId}").hasRole("PROFESSOR")
+                .and().formLogin();
+               // .and().csrf().disable().formLogin().disable();
     }
 
     @Bean

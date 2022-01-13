@@ -1,6 +1,6 @@
-package io.javabrains.springsecurityjpa;
+package hua.WebApp.SpringBoot;
 
-import io.javabrains.springsecurityjpa.entities.User.User;
+import hua.WebApp.SpringBoot.entities.User.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package io.javabrains.springsecurityjpa.entities.User;
+package hua.WebApp.SpringBoot.entities.User;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

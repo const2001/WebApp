@@ -1,6 +1,6 @@
-package io.javabrains.springsecurityjpa.entities.User;
+package hua.WebApp.SpringBoot.entities.User;
 
-import io.javabrains.springsecurityjpa.UserRepository;
+import hua.WebApp.SpringBoot.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

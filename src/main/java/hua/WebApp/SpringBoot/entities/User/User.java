@@ -1,4 +1,4 @@
-package io.javabrains.springsecurityjpa.entities.User;
+package hua.WebApp.SpringBoot.entities.User;
 
 import javax.persistence.*;
 
@@ -17,8 +17,7 @@ public class User {
 
     }
 
-    public User(Long id, String userName, String password, boolean active, String roles) {
-        this.ID = id;
+    public User(String userName, String password, boolean active, String roles) {
         this.userName = userName;
         this.password = password;
         this.active = active;
