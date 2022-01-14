@@ -29,10 +29,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         provider.setPasswordEncoder(getPasswordEncoder());
         return provider;
     }
-   // @Override
- //   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    //       auth.userDetailsService(userDetailsService);
-   // }
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//           auth.userDetailsService(userDetailsService);
+//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -45,7 +45,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/addLetter").hasRole("PROFESSOR")
                 .antMatchers("/editLetter/{letterId}").hasRole("PROFESSOR")
                 .antMatchers("/deleteLetter/{letterId}").hasRole("PROFESSOR")
-                .and().formLogin();
+                .and().formLogin().and().csrf().disable();
                // .and().csrf().disable().formLogin().disable();
     }
 
