@@ -47,7 +47,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/editLetter/{letterId}").hasRole("PROFESSOR")
                 .antMatchers("/deleteLetter/{letterId}").hasRole("PROFESSOR")
                 .and().formLogin().and().csrf().disable();
-               // .and().csrf().disable().formLogin().disable();
+
     }
 
     @Bean
