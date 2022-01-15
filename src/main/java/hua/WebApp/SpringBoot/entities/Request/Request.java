@@ -15,6 +15,7 @@ public class Request {
     private Long  mark;
     private String Dest;
     private boolean agreed;
+    private String Uid;
 
     public Request() {
     }
@@ -26,6 +27,7 @@ public class Request {
         this.mark = mark;
         Dest = dest;
         this.agreed = agreed;
+
     }
 
     public Long getId() {
@@ -74,5 +76,13 @@ public class Request {
 
     public void setAgreed(boolean agreed) {
         this.agreed = agreed;
+    }
+
+    public String getUid() {
+        return Uid;
+    }
+
+    public void setUid(String uid) {
+        Uid = uid;
     }
 }

@@ -13,6 +13,7 @@ public class RecommendationLetter {
     private String title;
     private String Text;
     private Long Rid;
+    private String Uid;
     public RecommendationLetter() {
 
     }
@@ -45,5 +46,21 @@ public class RecommendationLetter {
 
     public void setText(String text) {
         Text = text;
+    }
+
+    public Long getRid() {
+        return Rid;
+    }
+
+    public void setRid(Long rid) {
+        Rid = rid;
+    }
+
+    public String getUid() {
+        return Uid;
+    }
+
+    public void setUid(String uid) {
+        Uid = uid;
     }
 }
