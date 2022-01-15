@@ -22,21 +22,11 @@ public class Application {
 
 		SpringApplication.run(Application.class, args);
 
-
-
 	}
 
 	@Bean
 	CommandLineRunner commandLineRunner(UserRepository userRepository) {
 		return args -> {
-
-
-			//userRepository.save(new User());
-
-
-
-
-
 
 		};
 	}
