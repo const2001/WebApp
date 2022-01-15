@@ -14,19 +14,19 @@ public class Request {
     private String email;
     private Long  mark;
     private String Dest;
-    private boolean agreed;
+    private int status = 0;
     private String Uid;
 
     public Request() {
     }
 
-    public Request(Long id, String name, String email, Long mark, String dest, boolean agreed) {
+    public Request(Long id, String name, String email, Long mark, String dest, int status) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.mark = mark;
         Dest = dest;
-        this.agreed = agreed;
+        this.status = status;
 
     }
 
@@ -70,12 +70,12 @@ public class Request {
         Dest = dest;
     }
 
-    public boolean isAgreed() {
-        return agreed;
+    public int getStatus() {
+        return status;
     }
 
-    public void setAgreed(boolean agreed) {
-        this.agreed = agreed;
+    public void setStatus(int agreed) {
+        this.status = agreed;
     }
 
     public String getUid() {

@@ -42,7 +42,7 @@ public class Controller {
         List<Request> requests = requestRepository.findAll();
         List<Request> userRequests = null;
        for (Request r:requests) {
-           if(r.getUid().equals(GetUsername()))
+           if(r.getUid().equals(GetLoggedInUsername()))
                userRequests.add(r);
 
        }
@@ -52,7 +52,8 @@ public class Controller {
 
     @PostMapping("/addRequest")
     public String addRequest (@RequestBody Request r){
-       r.setUid(GetUsername());
+       r.setUid(GetLoggedInUsername());
+       r.setStatus(0);
         requestRepository.save(r);
         return "Request Saved";
     }
@@ -73,7 +74,7 @@ public class Controller {
                     "request with id : "+ requestId + " does not exists"
             );
         }
-        if (!r.get().getUid().equals(GetUsername()) ){
+        if (!r.get().getUid().equals(GetLoggedInUsername()) ){
             throw  new IllegalStateException(
                     "You dont have access to delete the request with id: "+ requestId
             );
@@ -90,7 +91,7 @@ public class Controller {
         List<Request> requests = requestRepository.findAll();
         List<Request> pendingRequests = null;
         for (Request r:requests) {
-            if(r.getDest().equals(GetUsername()))
+            if(r.getDest().equals(GetLoggedInUsername()) && r.getStatus()==0)
                 pendingRequests.add(r);
 
         }
@@ -109,14 +110,14 @@ public class Controller {
             );
         }
         Optional<Request> r =  requestRepository.findById(requestId);
-        if (!r.get().getDest().equals(GetUsername()) ){
+        if (!r.get().getDest().equals(GetLoggedInUsername()) ){
             throw  new IllegalStateException(
                     "You dont have access to change the status of this request with id: "+ requestId
             );
         }
 
         Request request =  r.get();
-        request.setAgreed(requestDetails.isAgreed());
+        request.setStatus(requestDetails.getStatus()) ;
         requestRepository.save(request);
 
         return  "Request Updated";
@@ -124,7 +125,7 @@ public class Controller {
 
     @PostMapping("/addLetter")
     public String addRecommendationLetter (@RequestBody RecommendationLetter rl){
-        rl.setUid(GetUsername());
+        rl.setUid(GetLoggedInUsername());
         recommendationLetterRepository.save(rl);
         return "Recommendation Letter Saved";
     }
@@ -144,7 +145,7 @@ public class Controller {
             );
         }
         Optional<RecommendationLetter> recommendationLetter = recommendationLetterRepository.findById(letterId);
-        if (!recommendationLetter.get().getUid().equals(GetUsername()) ){
+        if (!recommendationLetter.get().getUid().equals(GetLoggedInUsername()) ){
             throw  new IllegalStateException(
                     "You dont have access to change the status of this request with id: "+ letterId
             );
@@ -152,7 +153,7 @@ public class Controller {
         recommendationLetterRepository.deleteById(letterId);
     }
 
-    private String GetUsername(){
+    private String GetLoggedInUsername(){
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
         if (principal instanceof UserDetails) {
