@@ -41,6 +41,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/addRequest").hasRole("STUDENT")
                 .antMatchers("/editRequest").hasRole("STUDENT")
                 .antMatchers("deleteRequest/{requestId}").hasRole("STUDENT")
+                .antMatchers("/pendingRequests").hasRole("PROFESSOR")
                 .antMatchers("/setRequestStatus").hasRole("PROFESSOR")
                 .antMatchers("/addLetter").hasRole("PROFESSOR")
                 .antMatchers("/editLetter/{letterId}").hasRole("PROFESSOR")
