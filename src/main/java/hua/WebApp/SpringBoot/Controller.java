@@ -46,6 +46,12 @@ public class Controller {
                userRequests.add(r);
 
        }
+        if (userRequests==null ){
+            throw  new IllegalStateException(
+                    " No requests found."
+            );
+        }
+
 
         return userRequests;
     }
