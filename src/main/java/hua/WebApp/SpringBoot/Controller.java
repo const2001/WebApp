@@ -90,13 +90,9 @@ public class Controller {
     public List<Request> getAllPendingRequests(){
 
 
-        List<Request> requests = requestRepository.findAll();
-        List<Request> pendingRequests = null;
-        for (Request r:requests) {
-            if(r.getDest().equals(GetLoggedInUsername()) && r.getStatus()==0)
-                pendingRequests.add(r);
+        List<Request> pendingRequests = requestRepository.findAll();
 
-        }
+        pendingRequests.removeIf(r -> !r.getDest().equals(GetLoggedInUsername()) || r.getStatus()!=0 );
 
         return pendingRequests;
     }
