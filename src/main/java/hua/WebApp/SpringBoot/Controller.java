@@ -40,20 +40,16 @@ public class Controller {
 
 
         List<Request> requests = requestRepository.findAll();
-        List<Request> userRequests = null;
-       for (Request r:requests) {
-           if(r.getUid().equals(GetLoggedInUsername()))
-               userRequests.add(r);
 
-       }
-        if (userRequests==null ){
+        requests.removeIf(r -> !r.getUid().equals(GetLoggedInUsername()));
+        if (requests.isEmpty()){
             throw  new IllegalStateException(
                     " No requests found."
             );
         }
 
 
-        return userRequests;
+        return requests;
     }
 
     @PostMapping("/addRequest")
