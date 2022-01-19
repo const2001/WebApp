@@ -1,0 +1,52 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.container1{
+
+    margin-left: auto;
+    margin-right: auto;
+    width: 80em;
+    height:50em;
+}
+
+
+.btn {
+    border: 1px solid #e1776b;
+    background: #330702;
+    font-family: "montserrat";
+    color: rgb(133, 129, 129);
+    padding: 10px 20px;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 1s all ease;
+}
+
+.btn:hover {
+    color: #9d1102;
+    background: #ffffff;
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+
+    top: 50%;
+    width: 0%;
+    height: 100%;
+    background: #e1776b;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    transition: 0.4s ease;
+}
+
+.btn:hover::before {
+    height: 100%;
+}
+
+
+
+
+
+

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Requests List</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          inherity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJLSAwiGgFAW/dAiS6JXm"
+          crossorigin="änonymous">
+
+    <style>
+        body {
+            background-image: url(https://images.unsplash.com/photo-1454117096348-e4abbeba002c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
+            background-repeat: initial;
+            background-size: cover;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container1">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card" >
+            <h1 class="text-center">Λίστα Αιτημάτων</h1>
+
+            <p></p>
+
+            <div class="row">
+                <div class="col-lg-3">
+                    <a th:href="@{/addRequest}" class="btn btn-primary btn-sm mb-3">Add Request</a>
+
+                </div>
+
+            </div>
+
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Βαθμός</th>
+                    <th>Όνομα καθηγητή</th>
+                    <th>Actions</th>
+                </tr>
+
+                </thead>
+                <tbody>
+                <tr th:each="request: ${requests}">
+                    <td th:text="${request.mark}"></td>
+                    <td th:text="${request.dest}"></td>
+                    <td>
+                        <a th:href="@{/editRequest/{requestId})"
+                           class="btn btn-primary"> Update
+                        </a>
+                        <a th:href="@{/deleteRequest/{requestId})"
+                           class="btn btn-danger"> Delete
+                        </a>
+                    </td>
+
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
