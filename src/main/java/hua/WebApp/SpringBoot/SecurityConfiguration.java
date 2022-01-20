@@ -13,6 +13,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.sql.DataSource;
 import java.util.Base64;
@@ -37,6 +39,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/").permitAll()
                 .antMatchers("/requests").hasRole("STUDENT")
                 .antMatchers("/addRequest").hasRole("STUDENT")
                 .antMatchers("/editRequest").hasRole("STUDENT")
@@ -46,10 +49,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/addLetter").hasRole("PROFESSOR")
                 .antMatchers("/editLetter/{letterId}").hasRole("PROFESSOR")
                 .antMatchers("/deleteLetter/{letterId}").hasRole("PROFESSOR")
-                .and().formLogin().and().csrf().disable();
+                .and().formLogin().defaultSuccessUrl("/home_page",true).permitAll()
+                .and().csrf().disable().anonymous().disable();
+
 
     }
+    @Bean
+    public WebMvcConfigurer configure() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**")
+                        .allowedOrigins("*")
+                        .allowedMethods("GET", "PUT", "POST", "PATCH", "DELETE", "OPTIONS");
+            }
 
+        };
+    }
     @Bean
     public PasswordEncoder getPasswordEncoder() {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();

@@ -5,18 +5,22 @@ import hua.WebApp.SpringBoot.entities.RecommendationLetter.RecommendationLetterR
 import hua.WebApp.SpringBoot.entities.Request.Request;
 import hua.WebApp.SpringBoot.entities.Request.RequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
-
 @RestController
-public class Controller {
+@CrossOrigin
+public class HomeController {
 
     @Autowired
     UserDetailsService userDetailsService;
@@ -26,13 +30,30 @@ public class Controller {
 
 
 
-    public Controller(RequestRepository requestRepository, RecommendationLetterRepository recommendationLetterRepository, UserRepository userRepository){
+    public HomeController(RequestRepository requestRepository, RecommendationLetterRepository recommendationLetterRepository, UserRepository userRepository){
         this.requestRepository = requestRepository;
         this.recommendationLetterRepository = recommendationLetterRepository;
 
     }
 
-    //Student Endpoints
+
+
+    @GetMapping("/")
+    public String home() {
+
+        return "redirect:/login";
+    }
+
+    @GetMapping("/homepage")
+    public String homepage() {
+
+        return "home_page";
+    }
+    @PostMapping("/homepage")
+    public String add() {
+
+        return "home_page";
+    }
 
 
     @GetMapping("/requests")
@@ -47,7 +68,6 @@ public class Controller {
                     " No requests found."
             );
         }
-
 
         return requests;
     }
