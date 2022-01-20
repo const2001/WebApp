@@ -97,5 +97,10 @@ section{
     background-position: center;
     background-size:cover;
     height:100vh;
+    transition:all .5s;
+}
+
+#check:checked ~ section{
+   margin-left:250px;
 
 }
