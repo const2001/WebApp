@@ -46,7 +46,35 @@
 }
 
 
+.label{
+    font-size:15px;
+    line-height: 19px;
+    font-weight: 700;
+}
 
+.row1{
+    position:absolute;
+
+    top:50%;
+    left:30%;
+    width: 50%;
+
+    margin-top:-150px; /* this is half the height of your div*/
+    margin-left:-100px;
+
+}
+
+.row2{
+    position:absolute;
+
+    top:50%;
+    left:15%;
+    width: 85%;
+
+    margin-top:-150px; /* this is half the height of your div*/
+    margin-left:-100px;
+
+}
 
 
 
