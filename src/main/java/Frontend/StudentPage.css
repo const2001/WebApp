@@ -1,6 +1,6 @@
 @import url('https://fonts.google.com/');
 body{
-    font-family:'Roboto', sans-serif;
+    font-family:'Times New Roman', sans-serif;
 }
 *{
     margin:0;
@@ -11,8 +11,8 @@ body{
 
 .sidebar{
     position:fixed;
-    left:-250px;
-    width:250px;
+    left:-290px;
+    width:290px;
     height:100%;
     background: #042331;
     transition: all.5s ease;
@@ -70,7 +70,7 @@ label #btn{
 label #cancel{
     z-index:1111;
     left:-195px;
-    top:21px;
+    top:20px;
     font-size:30px;
     color:white;
     padding:4px 9px;
@@ -88,7 +88,7 @@ label #cancel{
 }
 
 #check:checked ~ label #cancel{
-    left:210px;
+    left:240px;
 
 }
 
