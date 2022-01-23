@@ -48,6 +48,9 @@
     font-weight: 700;
 }
 
+
+
+
 .row1{
     position:absolute;
 
@@ -120,6 +123,15 @@
     padding:8px;
     text-align:center;
     border: 1px solid #dee2e685;
+}
+
+#status{
+    width: 90%;
+    max-width:500px;
+    text-align:center;
+    padding:10px;
+    margin: 0 auto;
+    border-radius:8px;
 }
 
 

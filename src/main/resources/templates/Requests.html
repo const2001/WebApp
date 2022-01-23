@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Requests List</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../static/style.css">
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           inherity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJLSAwiGgFAW/dAiS6JXm"
@@ -29,15 +29,15 @@
 
             <h1 class="heading">My Application List</h1>
 
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Βαθμός</th>
-                <th>Όνομα καθηγητή</th>
-                <th>Ενέργεια</th>
-            </tr>
-            </thead>
-            <tbody>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Βαθμός</th>
+                    <th>Όνομα καθηγητή</th>
+                    <th>Ενέργεια</th>
+                </tr>
+                </thead>
+                <tbody>
                 <tr th:each="request: ${requests}">
                     <td th:text="${request.mark}"></td>
                     <td th:text="${request.dest}"></td>
@@ -51,14 +51,11 @@
                     </td>
 
                 </tr>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 </div>
 </body>
 </html>
-
-
-
 

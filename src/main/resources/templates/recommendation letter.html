@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create a request</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          inherity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJLSAwiGgFAW/dAiS6JXm"
+          crossorigin="änonymous">
+
+    <style>
+        body {
+            background-image: url(https://wallpaperaccess.com/full/537582.jpg);
+            background-repeat: initial;
+            background-size: cover;
+            font-family:'Times New Roman', sans-serif;
+        }
+    </style>
+
+</head>
+<body>
+<div class="row">
+    <div class="container">
+        <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card" style="background-color: lightsteelblue" >
+
+            <h1 class="text-center">Φόρμα Συστατικής επιστολής</h1>
+
+            <div class="card-body">
+                <form action="https://formspree.io/f/mlezgzzn" method="post" id="my-form" onsubmit="return checkforblank()">
+
+                    <div class="form-group">
+                        <label>Όνομα: </label>
+                        <input
+                                type="text"
+                                name="name"
+                                id="name"
+                                th:field="name"
+                                class="form-control"
+                                placeholder="Enter your name"
+                        />
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Email: </label>
+                        <input
+                                type="text"
+                                name="email"
+                                id="email"
+                                class="form-control"
+                                placeholder="Enter your email"
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Συστατική επιστολή: </label>
+                        <textarea
+                                id="letter"
+                                type="text"
+                                rows="10"
+                                class="form-control"
+                                placeholder="Write your rec. letter"></textarea>
+
+                    </div>
+
+<p></p>
+                    <div class="footer-body">
+                        <button type="submit" class="btn">
+                            Υποβολή
+                        </button>
+                    </div>
+
+
+                </form>
+            </div>
+            <p></p>
+            <div id="status"></div>
+        </div>
+    </div>
+</div>
+<script src="/static/email.js">
+
+
+</script>
+</body>
+</html>

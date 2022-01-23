@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Accepted Requests</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          inherity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJLSAwiGgFAW/dAiS6JXm"
+          crossorigin="änonymous">
+
+    <style type="text/css"> *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+    }
+    body{
+        background-image:url(https://wallpaperaccess.com/full/537582.jpg);
+        font-family:'Times New Roman', sans-serif;
+    }
+
+
+    </style>
+
+<body>
+<div class="row2">
+    <div class="table-container">
+        <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card" style="background-color: lightsteelblue" position="absolute">
+
+            <h1 class="heading">Δεκτές Αιτήσεις Φοιτητών</h1>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Βαθμός</th>
+                    <th>Όνομα φοιτητή</th>
+                    <th>Ενέργεια</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="request: ${requests}">
+                    <td th:text="${request.mark}"></td>
+                    <td th:text="${request.userName}"></td>
+                    <td>
+                        <a href="recommendation letter.html" class="btn btn-primary" style="color:white"> Rec. letter
+                        </a>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
