@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Requests List</title>
+    <link href="../static/style.css" th:href="@{/style.css}" rel="stylesheet" />
     <link rel="stylesheet" href="../static/style.css">
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -38,14 +39,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="request: ${requests}">
-                    <td th:text="${request.mark}"></td>
-                    <td th:text="${request.dest}"></td>
+                <tr th:each="request:${Requests}">
+                    <td th:text="${requests.mark}"></td>
+                    <td th:text="${requests.dest}"></td>
                     <td>
-                        <a th:href="@{/editRequest/{requestId})"
+                        <a th:href="@{http://localhost:8080/editRequest/{requestId})"
                            class="btn btn-primary" style="color:white"> Update
                         </a>
-                        <a th:href="@{/deleteRequest/{requestId})"
+                        <a th:href="@{http://localhost:8080/deleteRequest/{requestId})"
                            class="btn btn-danger" style="color:white"> Delete
                         </a>
                     </td>

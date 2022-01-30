@@ -15,7 +15,8 @@ import java.util.List;
 import java.util.Optional;
 
 
-@RestController
+
+@org.springframework.stereotype.Controller
 public class Controller {
 
     @Autowired
@@ -35,9 +36,25 @@ public class Controller {
     //Student Endpoints
 
 
+    @GetMapping("/")
+    public String homepage(){
+        System.out.println(hasRole());
+        if(hasRole().equals("[ROLE_STUDENT]"))
+         return "StudentPage";
+
+        else if(hasRole().equals("[ROLE_PROFESSOR]"))
+            return "ProfessorPage";
+        return "error";
+}
+
+    @GetMapping("/requestsPage")
+    public String getRequests() {
+
+        return "Requests";
+
+    }
     @GetMapping("/requests")
     public List<Request> getAllRequests(){
-
 
         List<Request> requests = requestRepository.findAll();
 
@@ -47,18 +64,28 @@ public class Controller {
                     " No requests found."
             );
         }
-
-
         return requests;
+
     }
+
+    @GetMapping("/addRequestPage")
+    public String getAddRequest() {
+
+        return "addRequest";
+    }
+
 
     @PostMapping("/addRequest")
     public String addRequest (@RequestBody Request r){
        r.setUid(GetLoggedInUsername());
        r.setStatus(0);
         requestRepository.save(r);
-        return "Request Saved";
+        r.setUid(GetLoggedInUsername());
+        requestRepository.save(r);
+        return "Request added";
     }
+
+
     @PutMapping("/editRequest/{requestId}")
     public String editRequest(@PathVariable("requestId") Long requestId){
        //TODO
@@ -86,6 +113,12 @@ public class Controller {
     }
 
     //Professor Endpoints
+    @GetMapping("/pendingRequestsPage")
+    public String getPendingRequestsPage(){
+
+        return "pendingRequests";
+    }
+
     @GetMapping("/pendingRequests")
     public List<Request> getAllPendingRequests(){
 
@@ -121,17 +154,34 @@ public class Controller {
         return  "Request Updated";
     }
 
+    @GetMapping("/addLetterPage")
+    public String getAddLetterPage(){
+
+        return "recommendation letter";
+    }
+
+
     @PostMapping("/addLetter")
     public String addRecommendationLetter (@RequestBody RecommendationLetter rl){
         rl.setUid(GetLoggedInUsername());
         recommendationLetterRepository.save(rl);
         return "Recommendation Letter Saved";
     }
+
+    @GetMapping("/viewLettersPage")
+    public String getLettersPage(){
+
+        return "letters";
+    }
+
+
+
     @PutMapping("/editLetter/{letterId}")
     public String editLetter(@PathVariable("letterId") Long letterId){
        //TODO
         return "Recommendation Letter Updated";
     }
+
     @DeleteMapping( "deleteLetter/{letterId}")
     public void deleteRLetter(@PathVariable("letterId") Long letterId){
         recommendationLetterRepository.findById(letterId);
@@ -162,8 +212,21 @@ public class Controller {
 
         }
         return username;
-    }
 
+    }
+    private String hasRole(){
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String role;
+        if (principal instanceof UserDetails) {
+            role = ((UserDetails)principal).getAuthorities().toString();
+
+
+        } else {
+            role = principal.toString();
+
+        }
+        return role;
+    }
 
 
 }

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+
 <head>
   <meta charset="UTF-8">
   <title>Side Menu Bar</title>
+  <link href="../static/StudentPage.css" th:href="@{/StudentPage.css}" rel="stylesheet" />
   <link rel="stylesheet" href="../static/StudentPage.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <script src="https://images.pexels.com/photos/257897/pexels-photo-257897.jpeg?cs=srgb&dl=pexels-pixabay-257897.jpg&fm=jpg"></script>
@@ -17,10 +18,9 @@
   <header>Application App</header>
   <ul>
 
-    <li><a href="Create_requests.html" target="_blank"><i class="fas fa-envelope"></i> Νέα Αίτηση</a></li>
-    <li><a href="Requests.html"><i class="fas fa-stream" ></i> Οι αιτήσεις μου</a></li>
-    <li><a href="#"><i class="far fa-id-card"></i> Διαγραφή λογαριασμού</a></li>
-    <li><a href="login.html"><i class="fas fa-sign-out-alt"> Αποσύνδεση</i></a></li>
+    <li><a href="http://localhost:8080/addRequestPage" target="_blank"><i class="fas fa-envelope"></i> Νέα Αίτηση</a></li>
+    <li><a href="http://localhost:8080/requests"><i class="fas fa-stream" ></i> Οι αιτήσεις μου</a></li>
+    <li><a href="http://localhost:8080/login?logout"><i class="fas fa-sign-out-alt"> Αποσύνδεση</i></a></li>
   </ul>
 </div>
 <section></section>

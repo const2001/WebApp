@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Create a request</title>
+    <link href="../static/style.css" th:href="@{/style.css}" rel="stylesheet" />
     <link rel="stylesheet" href="../static/style.css">
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -27,7 +28,7 @@
             <h1 class="text-center">Φόρμα αιτήματος</h1>
 
             <div class="card-body">
-                <form th:acion="@{/requests}" th:object="${r}" method="POST">
+                <form th:action="Requests.html" method="POST">
 
                     <div class="form-group">
                         <label>Όνομα: </label>
@@ -35,7 +36,6 @@
                                 type="text"
                                 name="name"
                                 id="name"
-                                th:field="name"
                                 class="form-control"
                                 placeholder="Enter your name"
                         />
