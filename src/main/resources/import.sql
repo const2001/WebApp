@@ -10,3 +10,6 @@ INSERT INTO users (id,active,password,roles,user_name) VALUES (10,true,'$2a$12$O
 INSERT INTO users (id,active,password,roles,user_name) VALUES (7,true,'$2a$12$a9UeVEbTJoETWLd3LCBRHeC1ep6AMRWZP0NX/qwd/meWnIskLMKiC','ROLE_PROFESSOR','vaggelis'); --password : pass
 INSERT INTO users (id,active,password,roles,user_name) VALUES (8,true,'$2a$12$a9UeVEbTJoETWLd3LCBRHeC1ep6AMRWZP0NX/qwd/meWnIskLMKiC','ROLE_PROFESSOR','xristina'); --password : pass
 INSERT INTO users (id,active,password,roles,user_name) VALUES (9,true,'$2a$12$a9UeVEbTJoETWLd3LCBRHeC1ep6AMRWZP0NX/qwd/meWnIskLMKiC','ROLE_PROFESSOR','adonis'); --password : pass
+
+--Request Hardcoded data
+INSERT INTO requests (id,name,mark,Dest,status,Uid) VALUES (1,'john', 8, 'vaggelis', '0', 1) --password: papi

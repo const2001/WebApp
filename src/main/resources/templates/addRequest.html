@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Create a request</title>
@@ -28,7 +28,8 @@
             <h1 class="text-center">Φόρμα αιτήματος</h1>
 
             <div class="card-body">
-                <form th:action="Requests.html" method="POST">
+
+                <form th:action="@{/addRequestPage}" method="POST">
 
                     <div class="form-group">
                         <label>Όνομα: </label>
@@ -44,6 +45,7 @@
                     <div class="form-group">
                         <label>Email: </label>
                         <input
+                                pattern="(?!test@test\.com$)[a-z0-9._%+-]{3,}@[a-z]{3,}\.[a-z]{2,}(?:\.[a-z]{2,})?"
                                 type="text"
                                 name="email"
                                 id="email"
@@ -87,7 +89,7 @@
                     </div>
 
                     <div class="footer-body">
-                        <button type="submit" class="btn">
+                        <button type="submit" class="btn" id="sendRequest">
                             Υποβολή
                         </button>
                     </div>
@@ -103,6 +105,7 @@
                                     'Dest': document.getElementById('dest').value
                                 };
 
+
                                 //check if an element is empty
                                 if (document.getElementById('name').value == "") {
                                     alert("complete all the fields!")
@@ -114,8 +117,14 @@
                                     document.getElementById('email').value
                                     return false
                                 }
-                                if (document.getElementById('mark').value == "" || document.getElementById('mark').value < 0 || document.getElementById('mark').value > 10) {
-                                    alert("please enter a price between 0 and 10")
+                                if (document.getElementById('mark').value == "") {
+                                    alert("complete all the fields")
+                                    document.getElementById('mark').value
+                                    return false
+                                }
+
+                                if(document.getElementById('mark').value < 0 || document.getElementById('mark').value > 10) {
+                                    alert("please enter a number between 0 and 10")
                                     document.getElementById('mark').value
                                     return false
                                 }
@@ -125,9 +134,10 @@
                                     return false
                                 }
 
-                                const xhr = new XMLHttpRequest();
+                                var xhr = new XMLHttpRequest();
                                 xhr.open("POST", 'http://localhost:8080/addRequest', true);
-                                xhr.setRequestHeader("Content-Type", "application/json");
+                                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
                                 xhr.onreadystatechange = function() {
                                     if (xhr.readyState == 4) {
                                         if (xhr.status == 200) {
@@ -136,7 +146,7 @@
                                     }
 
                                 };
-                                xhr.send(JSON.stringify(Request));
+                                xhr.send(JSON.stringify(Request);
 
                             });
 
