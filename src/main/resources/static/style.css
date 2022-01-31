@@ -4,6 +4,12 @@
     display: flex;
     justify-content: center;
 
+}
+
+.container{
+
+    display: flex;
+    justify-content: center;
 
 }
 
@@ -48,7 +54,11 @@
     font-weight: 700;
 }
 
+.row{
+    position:absolute;
+    width: 100%;
 
+}
 
 
 .row1{

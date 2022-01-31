@@ -38,14 +38,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="request: ${requests}">
-                    <td th:text="${request.mark}"></td>
-                    <td th:text="${request.userName}"></td>
+                <tr>
+                    <td></td>
+                    <td></td>
                     <td>
-                        <a th:href="@{/editRequest/{requestId}"
+                        <a th:href="@{http://localhost:8080/editRequest/{requestId}}"
                            class="btn btn-primary" style="color:white"> Accept
                         </a>
-                        <a th:href="@{/deleteRequest/{requestId}"
+                        <a th:href="@{http://localhost:8080/deleteRequest/{requestId}}"
                            class="btn btn-danger" style="color:white"> Reject
                         </a>
                     </td>

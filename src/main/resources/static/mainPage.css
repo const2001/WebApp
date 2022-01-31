@@ -44,9 +44,9 @@ body{
 ul li:hover a{
     padding-left:50px;
 }
-.sidebar ul a i{
-    margin-rigth:16px;
-}
+/*.sidebar ul a i{*/
+/*    margin-rigth:16px;*/
+/*}*/
 
 #check{
     display: none;
@@ -105,3 +105,6 @@ section{
 
 }
 
+.button{
+    background: #042331;
+}
