@@ -55,14 +55,14 @@ ul li:hover a{
 label #btn, label #cancel{
     position:absolute;
     cursor:pointer;
-    background: #042331;
+    background: antiquewhite;
     border-radius:3px;
 }
 label #btn{
     left:40px;
     top:25px;
     font-size:35px;
-    color:white;
+    color:midnightblue;
     padding: 6px 12px;
     transition: all .5s;
 }
@@ -72,7 +72,7 @@ label #cancel{
     left:-195px;
     top:20px;
     font-size:30px;
-    color:white;
+    color:midnightblue;
     padding:4px 9px;
     transition:all .5s ease;
 }
@@ -93,7 +93,7 @@ label #cancel{
 }
 
 section{
-    background: url(https://images.pexels.com/photos/7974/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+    background: url(https://wallpaperaccess.com/full/1858127.jpg);
     background-position: center;
     background-size:cover;
     height:100vh;

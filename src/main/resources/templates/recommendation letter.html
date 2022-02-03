@@ -3,33 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Create a request</title>
-    <link rel="stylesheet" href="../static/style.css">
+    <link href="../static/style1.css" th:href="@{/style1.css}" rel="stylesheet" />
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           inherity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJLSAwiGgFAW/dAiS6JXm"
           crossorigin="änonymous">
 
-    <style>
-        body {
-            background-image: url(https://wallpaperaccess.com/full/537582.jpg);
-            background-repeat: initial;
-            background-size: cover;
-            font-family:'Times New Roman', sans-serif;
-        }
-    </style>
 
 </head>
 <body>
+<header>
 <div class="row">
     <div class="container">
-        <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card" style="background-color: lightsteelblue" >
+        <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card" style="background-color: cadetblue" >
 
-            <h1 class="text-center">Φόρμα Συστατικής επιστολής</h1>
+            <h1 class="text-center" style="color: #fdfbff">Φόρμα Συστατικής επιστολής</h1>
 
             <div class="card-body">
                 <form action="https://formspree.io/f/mlezgzzn" method="post" id="my-form" onsubmit="return checkforblank()">
 
-                    <div class="form-group">
+                    <div class="form-group" style="color: #FFFFFF">
                         <label>Όνομα: </label>
                         <input
                                 type="text"
@@ -41,7 +34,7 @@
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="form-group" style="color: #FFFFFF">
                         <label>Email: </label>
                         <input
                                 type="text"
@@ -52,7 +45,7 @@
                         />
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="color: #FFFFFF">
                         <label>Συστατική επιστολή: </label>
                         <textarea
                                 id="letter"
@@ -81,5 +74,6 @@
 
 
 </script>
+</header>
 </body>
 </html>

@@ -3,58 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Pending Requests</title>
-    <link rel="stylesheet" href="../static/style.css">
+    <link href="../static/style2.css" th:href="@{/style2.css}" rel="stylesheet" />
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           inherity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJLSAwiGgFAW/dAiS6JXm"
           crossorigin="änonymous">
 
-    <style type="text/css"> *{
-        margin:0;
-        padding:0;
-        box-sizing:border-box;
-    }
-    body{
-        background-image:url(https://wallpaperaccess.com/full/537582.jpg);
-        font-family:'Times New Roman', sans-serif;
-    }
-
-
-    </style>
-
 <body>
-<div class="row2">
-    <div class="table-container">
-        <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card" style="background-color: lightsteelblue" position="absolute">
+<header>
+    <h1 class="heading">Εκκρεμείς Αιτήσεις Φοιτητών</h1>
+    <div class="row2">
+        <div class="row d-flex justify-content-center">
+            <div class="table-container">
 
-            <h1 class="heading">Εκκρεμείς Αιτήσεις Φοιτητών</h1>
+                <div id="PendingLetters"></div>
+                        <table class="table" id="display">
+                            <thead>
+                            <th>Βαθμός</th>
+                            <th>Όνομα φοιτητή</th>
+                            <th>Ενέργεια</th>
+                            </thead>
 
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Βαθμός</th>
-                    <th>Όνομα φοιτητή</th>
-                    <th>Ενέργεια</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <a th:href="@{http://localhost:8080/editRequest/{requestId}}"
-                           class="btn btn-primary" style="color:white"> Accept
-                        </a>
-                        <a th:href="@{http://localhost:8080/deleteRequest/{requestId}}"
-                           class="btn btn-danger" style="color:white"> Reject
-                        </a>
-                    </td>
+                            <tbody id="tbody1">
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <Button type th:href="@{http://localhost:8080/editRequest/{requestId}}"
+                                       class="btn1"> Accept
+                                    </Button>
+                                    <Button th:href="@{http://localhost:8080/deleteRequest/{requestId}}"
+                                       class="btn2"> Reject
+                                    </Button>
+                                </td>
+                            </tbody>
+                        </table>
 
-                </tr>
-                </tbody>
-            </table>
+              </div>
         </div>
     </div>
 </div>
+</header>
 </body>
 </html>
