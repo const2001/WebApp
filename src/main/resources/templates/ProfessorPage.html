@@ -19,8 +19,25 @@
 
     <div class="welcome-text">
         <h1>Welcome to our website</h1>
-        <a href="#"><i class="fa fa-phone-square"></i> Contact Us</a>
+        <a href="#" onclick="myFunction()"><i class="fa fa-phone-square"></i> Contact Us</a>
+        <p id="demo" style="color: #FFFFFF"></p>
     </div>
+
+    <script>
+        var a;
+        function myFunction(){
+            if(a==0){
+                document.getElementById("demo").innerHTML = "<br>it21994@hua.gr <br></br>it219104@hua.gr<p></p><a href=\https://github.com/const2001/WebApp>https://github.com/const2001/WebApp</a>";
+                return a=1;
+            }
+            else{
+                document.getElementById("demo").innerHTML = "";
+                return a=0;
+            }
+        }
+
+
+    </script>
 
 </header>
 </body>
