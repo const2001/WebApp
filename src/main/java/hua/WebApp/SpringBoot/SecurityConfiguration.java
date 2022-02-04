@@ -68,6 +68,7 @@ public CorsConfigurationSource corsConfigurationSource() {
                 .antMatchers("/addLetter").hasRole("PROFESSOR")
                 .antMatchers("/editLetter/{letterId}").hasRole("PROFESSOR")
                 .antMatchers("/deleteLetter/{letterId}").hasRole("PROFESSOR")
+                .antMatchers("/homepage").hasAnyRole("STUDENT","PROFESSOR")
                 .and().formLogin()
                 .and().csrf().disable();
      //   http

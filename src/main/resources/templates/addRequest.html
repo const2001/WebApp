@@ -87,7 +87,6 @@
 
                     <script type="text/javascript">
                         window.addEventListener('load', (event) => {
-
                             document.getElementById('sendRequest').addEventListener('click', (event) => {
                                 const requests = {
                                     'name': document.getElementById('name').value,
@@ -95,8 +94,6 @@
                                     'mark': document.getElementById('mark').value,
                                     'Dest': document.getElementById('dest').value
                                 };
-
-
                                 //check if an element is empty
                                 if (document.getElementById('name').value == "") {
                                     alert("complete all the fields!")
@@ -137,7 +134,8 @@
                                     }
 
                                 };
-                                xhr.send(JSON.stringify(Request));
+
+                                xhr.send(JSON.stringify(requests));
 
                             });
 
