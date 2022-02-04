@@ -172,7 +172,20 @@ public class Controller {
         return "letters";
     }
 
+    @GetMapping("/viewLetters")
+    public List<Request> getAllLetterRequests(){
 
+
+        List<Request> recommendationLetters = requestRepository.findAll();
+
+        recommendationLetters.removeIf(r -> !r.getUid().equals(GetLoggedInUsername()));
+        if (recommendationLetters.isEmpty()){
+            throw  new IllegalStateException(
+                    " No requests found."
+            );
+        }
+        return recommendationLetters;
+    }
 
     @PutMapping("/editLetter/{letterId}")
     public String editLetter(@PathVariable("letterId") Long letterId){
@@ -225,6 +238,7 @@ public class Controller {
         }
         return role;
     }
+
 
 
 }
