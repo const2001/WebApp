@@ -10,10 +10,9 @@
 header{
     background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),url(https://wallpapercave.com/uwp/uwp1197581.jpeg);
     font-family:'Times New Roman', sans-serif;
-    -webkit-background-size:cover;
     background-size: cover;
-    background-position: center center;
-    position: relative;
+    height: 100%;
+    overflow: hidden;
 }
 .card-body{
     text-align:center;
@@ -37,3 +36,10 @@ header{
     color:white;
 }
 
+.flex-container{
+    position: center;
+    width:600px;
+    margin:20% 30%;
+    margin-top: 5%;
+
+}

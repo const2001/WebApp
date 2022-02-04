@@ -13,3 +13,4 @@ INSERT INTO users (id,active,password,roles,user_name) VALUES (9,true,'$2a$12$a9
 
 --Request Hardcoded data
 INSERT INTO requests (id,name,mark,Dest,status,Uid) VALUES (1,'john', 8, 'vaggelis', '0', 'john') --password: papi
+INSERT INTO requests (id,name,mark,Dest,status,Uid) VALUES (2,'john', 5, 'xristina', '0', 'john') --password: papi
