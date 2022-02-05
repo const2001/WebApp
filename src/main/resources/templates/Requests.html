@@ -11,6 +11,7 @@
 
 <body>
 <header>
+    <tbody>
     <h1 class="heading">My Application List</h1>
     <div class="row2">
         <div class="row d-flex justify-content-center">
@@ -22,7 +23,7 @@
                     <th>Βαθμός</th>
                     <th>Όνομα καθηγητή</th>
                     <th>Κατάσταση</th>
-                    <th>Ενέργεια</th>
+                    <th>Διαγραφή</th>
                     </thead>
 
                     <tbody id="tbody1">
@@ -30,10 +31,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td>
-                            <button th:href="@{http://localhost:8080/deleteRequest/{requestId}}" class="btn"> Delete </button>
-
-                        </td>
+                        <td class="float-center"></td>
                     </tbody>
                 </table>
 
@@ -53,12 +51,14 @@
                                     const results = JSON.parse(xhr.responseText);
                                     const item = results[0];
                                     try {
-                                        divElem.innerHtml = ` ${item.mark} ${item.dest} ${item.status} ${item.energeia}`;
+                                        divElem.innerHtml = ` ${item.mark} ${item.dest} ${item.status}`;
                                         console.log(divElem.innerHtml);
                                     } catch (err) {
                                         alert('You dont have any request');
                                         return false;
                                     }
+
+
 
 
                                     var row = 1;
@@ -77,9 +77,41 @@
                                         cellA1.innerHTML = item.mark;
                                         cellA2.innerHTML = item.dest;
                                         cellA3.innerHTML = item.status;
-                                        cellA4.innerHTML=item.btn;
+                                        cellA4.innerHTML = "<input th:href=\"@{http://localhost:8080/deleteRequest/{requestId}}\" id=\"btn\" type=\"button\" class=\"btn\" value=\"Delete\" />";
 
                                         row++;
+
+
+                                        var index, table=document.getElementById('display');
+                                        for(var i=1; i<table.rows.length; i++){
+                                            table.rows[i].cells[3].onclick=function(){
+                                                index=this.parentElement.rowIndex;
+                                                table.deleteRow(index);
+                                                console.log(index);
+
+
+
+                                            };
+
+                                        }
+
+                                        document.getElementById("btn").addEventListener("click", (event) => {
+
+                                            const requestsId = localStorage.getItem("tid").value;
+                                            alert("deleteRequest"+requestsId);
+                                            let xhr = new XMLHttpRequest();
+                                            xhr.open("DELETE", `http://localhost:8080/deleteRequest/${requestsId}`, true);
+                                            xhr.setRequestHeader('Content-type','application/json;');
+                                            xhr.onload = function () {
+                                                let question = JSON.parse(xhr.responseText);
+                                                if (xhr.readyState == 4 && xhr.status == "200") {
+                                                    console.table(display);
+                                                } else {
+                                                    // console.error(question);
+                                                }
+                                            }
+                                            xhr.send(null);
+                                        });
                                     });
 
 
@@ -92,23 +124,14 @@
                     });
 
 
-                </script>
 
-                <script>
-                    var index, table=document.getElementById('display');
-                    for(var i=0; i<table.rows.length; i++){
-                        table.rows[i].cells[3].onclick=function(){
-                            index=this.parentElement.rowIndex;
-                            table.deleteRow(index);
-                            console.log(index);
-                        };
 
-                    }
                 </script>
 
             </div>
         </div>
     </div>
+    </tbody>
 </header>
 </body>
 </html>

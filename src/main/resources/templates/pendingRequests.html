@@ -22,7 +22,8 @@
                         <th>Id</th>
                         <th>Βαθμός</th>
                         <th>Όνομα φοιτητή</th>
-                        <th class="text-center">Ενέργεια</th>
+                        <th class="text-center">Αποδοχή</th>
+                        <th class="text-center">Απόρριψη</th>
                     </tr>
                     </thead>
 
@@ -31,14 +32,8 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td class="float-center">
-                            <Button type th:href="@{http://localhost:8080/editRequest/{requestId}}"
-                                    class="btn1"> Accept
-                            </Button>
-                            <Button th:href="@{http://localhost:8080/deleteRequest/{requestId}}"
-                                    class="btn2"> Reject
-                            </Button>
-                        </td>
+                        <td class="float-center"></td>
+                        <td class="float-center"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -59,7 +54,7 @@
                                     const results = JSON.parse(xhr.responseText);
                                     const item = results[0];
                                     try {
-                                        divElem.innerHtml = `${item.id} ${item.mark} ${item.uid} ${item.energeia}`;
+                                        divElem.innerHtml = `${item.id} ${item.mark} ${item.uid}`;
                                         console.log(divElem.innerHtml);
                                     } catch (err) {
                                         alert('You dont have any pending request');
@@ -77,13 +72,33 @@
                                         var cellA2 = AllNewRow.insertCell(1);
                                         var cellA3 = AllNewRow.insertCell(2);
                                         var cellA4 = AllNewRow.insertCell(3);
+                                        var cellA5 = AllNewRow.insertCell(4);
 
                                         cellA1.innerHTML = item.id;
                                         cellA2.innerHTML = item.mark;
                                         cellA3.innerHTML = item.uid;
-                                        cellA4.innerHTML = item.energeia;
-
+                                        cellA4.innerHTML = "<input th:href=\"@{http://localhost:8080/editRequest/{requestId}}\" id=\"btn1\" type=\"button\" class=\"btn1\" value=\"Accept\" />";
+                                        cellA5.innerHTML = "<input th:href=\"@{http://localhost:8080/deleteRequest/{requestId}}\" id=\"btn2\" type=\"button\" class=\"btn2\" value=\"Reject\" />";
                                         row++;
+
+                                        var index, table = document.getElementById('display');
+                                        for (var i = 1; i < table.rows.length; i++) {
+                                            table.rows[i].cells[4].onclick = function () {
+                                                index = this.parentElement.rowIndex;
+                                                table.deleteRow(index);
+                                                console.log(index);
+                                            };
+
+                                        }
+                                        var index2, table = document.getElementById('display');
+                                        for (var i = 1; i < table.rows.length; i++) {
+                                            table.rows[i].cells[3].onclick = function () {
+                                                index2 = this.parentElement.cellIndex;
+                                                table.deleteCell(index2)
+                                                console.log(index2);
+                                            };
+                                        }
+
                                     });
 
 

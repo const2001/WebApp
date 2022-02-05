@@ -21,17 +21,14 @@
                     <thead>
                     <th>Id</th>
                     <th>Email</th>
-                    <th>Ενέργεια</th>
+                    <th>Διαγραφή</th>
                     </thead>
 
                     <tbody id="tbody1">
                     <tr>
                         <td></td>
                         <td></td>
-                        <td>
-                            </a>
-                            <button th:href="@{http://localhost:8080/deleteLetter/{letterId}}" class="btn"> Delete </button>
-                        </td>
+                        <td></td>
                     </tbody>
                 </table>
                 <div id="searchAllLettersArea"></div>
@@ -51,7 +48,7 @@
                                     const results = JSON.parse(xhr.responseText);
                                     const item = results[0];
                                     try {
-                                        divElem.innerHtml = ` ${item.id} ${item.email} ${item.energeia}`;
+                                        divElem.innerHtml = ` ${item.id} ${item.email}`;
                                         console.log(divElem.innerHtml);
                                     } catch (err) {
                                         alert('You dont have any recommendation letter');
@@ -73,9 +70,24 @@
 
                                         cellA1.innerHTML = item.id;
                                         cellA2.innerHTML = item.email;
-                                        cellA3.innerHTML = item.energeia;
+                                        cellA3.innerHTML = "<input th:href=\"@{http://localhost:8080/deleteLetter/{letterId}}\" id=\"btn\" type=\"button\" class=\"btn\" value=\"Delete\" />";
 
                                         row++;
+
+
+                                        var index, table=document.getElementById('display');
+                                        for(var i=1; i<table.rows.length; i++){
+                                            table.rows[i].cells[2].onclick=function(){
+                                                index=this.parentElement.rowIndex;
+                                                table.deleteRow(index);
+                                                console.log(index);
+
+
+
+                                            };
+
+                                        }
+
                                     });
 
 

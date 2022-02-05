@@ -29,11 +29,13 @@ header{
     margin-top:20px;
     display:inline-block;
     color:rebeccapurple;
+    box-shadow: -3px 6px 4px mediumpurple;
 }
 
 .btn:hover{
     background:rebeccapurple;
     color:white;
+    box-shadow: -3px 6px 4px indigo;
 }
 
 .flex-container{
