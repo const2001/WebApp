@@ -10,17 +10,17 @@ public class RecommendationLetter {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String title;
-    private String Text;
     private Long Rid;
+    private String Text;
     private String Uid;
+    private String email;
     public RecommendationLetter() {
 
     }
 
-    public RecommendationLetter(Long id, String title, String text) {
+    public RecommendationLetter(Long id, String text, String email) {
         this.id = id;
-        this.title = title;
+        this.email = email;
         Text = text;
     }
 
@@ -32,20 +32,20 @@ public class RecommendationLetter {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getText() {
         return Text;
     }
 
     public void setText(String text) {
         Text = text;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Long getRid() {

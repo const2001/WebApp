@@ -162,7 +162,7 @@ public class RestController {
     }
 
     @DeleteMapping( "deleteLetter/{letterId}")
-    public void deleteRLetter(@PathVariable("letterId") Long letterId){
+    public void deleteLetter(@PathVariable("letterId") Long letterId){
         recommendationLetterRepository.findById(letterId);
 
         boolean exists =  recommendationLetterRepository.existsById(letterId);

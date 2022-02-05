@@ -41,21 +41,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         provider.setPasswordEncoder(getPasswordEncoder());
         return provider;
     }
-//    @Override
+    //    @Override
 //    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //           auth.userDetailsService(userDetailsService);
 //    }
-@Bean
-public CorsConfigurationSource corsConfigurationSource() {
-    CorsConfiguration configuration = new CorsConfiguration();
-    configuration.setAllowCredentials(true);
-    configuration.setAllowedOrigins(Arrays.asList("*"));
-    configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
-    configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type", "x-auth-token", "referer"));
-    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    source.registerCorsConfiguration("/**", configuration);
-    return source;
-}
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowCredentials(true);
+        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type", "x-auth-token", "referer"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
@@ -71,10 +71,10 @@ public CorsConfigurationSource corsConfigurationSource() {
                 .antMatchers("/homepage").hasAnyRole("STUDENT","PROFESSOR")
                 .and().formLogin()
                 .and().csrf().disable();
-     //   http
-                // ...
-             //   .cors().disable();
-                // do not use any default headers unless explicitly listed
+        //   http
+        // ...
+        //   .cors().disable();
+        // do not use any default headers unless explicitly listed
 
     }
     private AuthenticationSuccessHandler successHandler() {

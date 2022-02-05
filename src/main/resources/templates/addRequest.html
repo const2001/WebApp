@@ -12,141 +12,142 @@
 </head>
 <body>
 <header>
-<div class="row">
-    <div class="container">
-        <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card" style="background-color: cadetblue" >
+    <div class="row">
+        <div class="container">
+            <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card" style="background-color: cadetblue" >
 
-            <h1 class="text-center" style="color: #fdfbff">Φόρμα Αιτήματος</h1>
+                <h1 class="text-center" style="color: #fdfbff">Φόρμα Αιτήματος</h1>
 
-            <div class="card-body">
+                <div class="card-body">
 
-                <form th:action="@{/addRequest}" method="POST">
 
-                    <div class="form-group" style="color: #FFFFFF">
-                        <label>Όνομα: </label>
-                        <input
-                                type="text"
-                                name="name"
-                                id="name"
-                                class="form-control"
-                                placeholder="E.g. Ioannis Papadimitriou"
-                        />
-                    </div>
+                        <div class="form-group" style="color: #FFFFFF">
+                            <label>Όνομα: </label>
+                            <input
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    class="form-control"
+                                    placeholder="E.g. Ioannis Papadimitriou"
+                            />
+                        </div>
 
-                    <div class="form-group" style="color: #FFFFFF">
-                        <label>Email: </label>
-                        <input
-                                pattern="(?!test@test\.com$)[a-z0-9._%+-]{3,}@[a-z]{3,}\.[a-z]{2,}(?:\.[a-z]{2,})?"
-                                type="text"
-                                name="email"
-                                id="email"
-                                class="form-control"
-                                placeholder="E.g. john@gmail.com"
-                        />
-                    </div>
+                        <div class="form-group" style="color: #FFFFFF">
+                            <label>Βαθμός: </label>
+                            <input
+                                    type="number"
+                                    name="mark"
+                                    id="mark"
+                                    min="0"
+                                    max="10"
+                                    class="form-control"
+                                    placeholder="E.g. 8"
+                            />
+                        </div>
 
-                    <div class="form-group" style="color: #FFFFFF">
-                        <label>Βαθμός: </label>
-                        <input
-                                type="number"
-                                name="mark"
-                                id="mark"
-                                min="0"
-                                max="10"
-                                class="form-control"
-                                placeholder="E.g. 8"
-                        />
-                    </div>
+                        <div class="form-group" style="color: #FFFFFF">
+                            <label>Email: </label>
+                            <input
+                                    pattern="(?!test@test\.com$)[a-z0-9._%+-]{3,}@[a-z]{3,}\.[a-z]{2,}(?:\.[a-z]{2,})?"
+                                    type="text"
+                                    name="email"
+                                    id="email"
+                                    class="form-control"
+                                    placeholder="E.g. john@gmail.com"
+                            />
+                        </div>
 
-                    <div class="form-group" style="color: #FFFFFF">
-                        <label>Όνομα καθηγητή: </label>
-                        <select name="dest" id="dest">
-                            <option value="" disabled selected>Επέλεξε καθηγητή</option>
-                            <option value="vaggelis">Βαγγέλης</option>
-                            <option value="xristina">Χριστίνα</option>
-                            <option value="adonis">Αντώνης</option>
-                        </select>
 
-                    </div>
 
-                    <div class="form-group" style="color: #FFFFFF">
-                        <label>Αίτημα: </label>
-                        <textarea
-                                type="text"
-                                rows="8"
-                                class="form-control"
-                                ></textarea>
+                        <div class="form-group" style="color: #FFFFFF">
+                            <label>Όνομα καθηγητή: </label>
+                            <select name="dest" id="Dest">
+                                <option value="" disabled selected>Επέλεξε καθηγητή</option>
+                                <option value="vaggelis">Βαγγέλης</option>
+                                <option value="xristina">Χριστίνα</option>
+                                <option value="adonis">Αντώνης</option>
+                            </select>
 
-                    </div>
+                        </div>
 
-                    <div class="footer-body">
-                        <button type="submit" class="btn" id="sendRequest">
-                            Υποβολή
-                        </button>
-                    </div>
+                        <div class="form-group" style="color: #FFFFFF">
+                            <label>Αίτημα: </label>
+                            <textarea
+                                    type="text"
+                                    rows="8"
+                                    class="form-control"
+                            ></textarea>
 
-                    <script type="text/javascript">
-                        window.addEventListener('load', (event) => {
-                            document.getElementById('sendRequest').addEventListener('click', (event) => {
-                                const requests = {
-                                    'name': document.getElementById('name').value,
-                                    'email': document.getElementById('email').value,
-                                    'mark': document.getElementById('mark').value,
-                                    'Dest': document.getElementById('dest').value
-                                };
-                                //check if an element is empty
-                                if (document.getElementById('name').value == "") {
-                                    alert("complete all the fields!")
-                                    document.getElementById('name').value
-                                    return false
-                                }
-                                if (document.getElementById('email').value == "") {
-                                    alert("complete all the fields!")
-                                    document.getElementById('email').value
-                                    return false
-                                }
-                                if (document.getElementById('mark').value == "") {
-                                    alert("complete all the fields")
-                                    document.getElementById('mark').value
-                                    return false
-                                }
+                        </div>
 
-                                if(document.getElementById('mark').value < 0 || document.getElementById('mark').value > 10) {
-                                    alert("please enter a number between 0 and 10")
-                                    document.getElementById('mark').value
-                                    return false
-                                }
-                                if (document.getElementById('dest').value == "") {
-                                    alert("complete all the fields!")
-                                    document.getElementById('dest').value
-                                    return false
-                                }
 
-                                var xhr = new XMLHttpRequest();
-                                xhr.open("POST", 'http://localhost:8080/addRequest', true);
-                                xhr.setRequestHeader("Content-Type", "application/json");
+                            <button type="submit" class="btn" id="sendRequest">
+                                Υποβολή
+                            </button>
 
-                                xhr.onreadystatechange = function() {
-                                    if (xhr.readyState == 4) {
-                                        if (xhr.status == 200) {
-                                            alert(xhr.responseText);
-                                        }
+
+                        <script type="text/javascript">
+                            window.addEventListener('load', (event) => {
+                                document.getElementById('sendRequest').addEventListener('click', (event) => {
+                                    const Request = {
+                                        'name': document.getElementById('name').value,
+                                        'mark': document.getElementById('mark').value,
+                                        'email': document.getElementById('email').value,
+                                        'Dest': document.getElementById('Dest').value
+                                    };
+                                    //check if an element is empty
+                                    if (document.getElementById('name').value == "") {
+                                        alert("complete all the fields!")
+                                        document.getElementById('name').value
+                                        return false
+                                    }
+                                    if (document.getElementById('email').value == "") {
+                                        alert("complete all the fields!")
+                                        document.getElementById('email').value
+                                        return false
+                                    }
+                                    if (document.getElementById('mark').value == "") {
+                                        alert("complete all the fields")
+                                        document.getElementById('mark').value
+                                        return false
                                     }
 
-                                };
+                                    if(document.getElementById('mark').value < 0 || document.getElementById('mark').value > 10) {
+                                        alert("please enter a number between 0 and 10")
+                                        document.getElementById('mark').value
+                                        return false
+                                    }
+                                    if (document.getElementById('Dest').value == "") {
+                                        alert("complete all the fields!")
+                                        document.getElementById('Dest').value
+                                        return false
+                                    }
 
-                                xhr.send(JSON.stringify(requests));
+                                    var xhr = new XMLHttpRequest();
+                                    xhr.open("POST", 'http://localhost:8080/addRequest', true);
+                                    xhr.setRequestHeader("Content-Type", "application/json");
+
+                                    xhr.onreadystatechange = function() {
+                                        if (xhr.readyState == 4) {
+                                            if (xhr.status == 200) {
+                                                alert(xhr.responseText);
+                                            }
+                                        }
+
+                                    };
+
+                                    xhr.send(JSON.stringify(Request));
+
+                                });
 
                             });
+                        </script>
 
-                        });
-                    </script>
 
-                </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </header>
 </body>
 </html>

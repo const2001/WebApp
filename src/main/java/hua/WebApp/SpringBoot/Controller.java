@@ -37,8 +37,8 @@ public class Controller {
     @GetMapping("/")
     public String home(){
         hasRole();
-         return "redirect:/homepage";
-        }
+        return "redirect:/homepage";
+    }
 
 
     @GetMapping("/homepage")
@@ -46,12 +46,12 @@ public class Controller {
         String error = "error message";
         System.out.println(hasRole());
         if(hasRole().equals("[ROLE_STUDENT]"))
-         return "StudentPage";
+            return "StudentPage";
 
         else if(hasRole().equals("[ROLE_PROFESSOR]"))
             return "ProfessorPage";
         return error;
-}
+    }
 
     @GetMapping("/requestsPage")
     public String getRequests() {
@@ -113,4 +113,3 @@ public class Controller {
 
 
 }
-

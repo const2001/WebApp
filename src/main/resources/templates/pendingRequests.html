@@ -8,7 +8,6 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           inherity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJLSAwiGgFAW/dAiS6JXm"
           crossorigin="änonymous">
-
 <body>
 <header>
     <h1 class="heading">Εκκρεμείς Αιτήσεις Φοιτητών</h1>
@@ -17,30 +16,32 @@
             <div class="table-container">
 
                 <div id="PendingLetters"></div>
-                        <table class="table" id="display">
-                            <thead>
-                            <tr>
-                                <th>Βαθμός</th>
-                                <th>Όνομα φοιτητή</th>
-                                <th class="text-center">Ενέργεια</th>
-                            </tr>
-                            </thead>
+                <table class="table" id="display">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Βαθμός</th>
+                        <th>Όνομα φοιτητή</th>
+                        <th class="text-center">Ενέργεια</th>
+                    </tr>
+                    </thead>
 
-                            <tbody id="tbody1">
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td class="float-center">
-                                        <Button type th:href="@{http://localhost:8080/editRequest/{requestId}}"
-                                        class="btn1"> Accept
-                                        </Button>
-                                        <Button th:href="@{http://localhost:8080/deleteRequest/{requestId}}"
-                                        class="btn2"> Reject
-                                        </Button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                    <tbody id="tbody1">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="float-center">
+                            <Button type th:href="@{http://localhost:8080/editRequest/{requestId}}"
+                                    class="btn1"> Accept
+                            </Button>
+                            <Button th:href="@{http://localhost:8080/deleteRequest/{requestId}}"
+                                    class="btn2"> Reject
+                            </Button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
                 <div id="searchAllPendingRequestsArea"></div>
                 <script>
                     window.addEventListener('load', (event) => {
@@ -58,7 +59,7 @@
                                     const results = JSON.parse(xhr.responseText);
                                     const item = results[0];
                                     try {
-                                        divElem.innerHtml = `${item.mark} ${item.uid} ${item.energeia}`;
+                                        divElem.innerHtml = `${item.id} ${item.mark} ${item.uid} ${item.energeia}`;
                                         console.log(divElem.innerHtml);
                                     } catch (err) {
                                         alert('You dont have any pending request');
@@ -74,12 +75,13 @@
                                         var AllNewRow = display.insertRow(row);
                                         var cellA1 = AllNewRow.insertCell(0);
                                         var cellA2 = AllNewRow.insertCell(1);
-                                        var cellA2 = AllNewRow.insertCell(2);
+                                        var cellA3 = AllNewRow.insertCell(2);
+                                        var cellA4 = AllNewRow.insertCell(3);
 
-
-                                        cellA1.innerHTML = item.mark;
-                                        cellA2.innerHTML = item.uid;
-                                        cellA2.innerHTML = item.energeia;
+                                        cellA1.innerHTML = item.id;
+                                        cellA2.innerHTML = item.mark;
+                                        cellA3.innerHTML = item.uid;
+                                        cellA4.innerHTML = item.energeia;
 
                                         row++;
                                     });
@@ -97,11 +99,19 @@
                 </script>
 
 
-
-              </div>
+            </div>
         </div>
     </div>
-</div>
+    </div>
+</header>
+</body>
+</html>
+
+
+            </div>
+        </div>
+    </div>
+    </div>
 </header>
 </body>
 </html>

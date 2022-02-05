@@ -12,4 +12,8 @@ INSERT INTO users (id,active,password,roles,user_name) VALUES (8,true,'$2a$12$a9
 INSERT INTO users (id,active,password,roles,user_name) VALUES (9,true,'$2a$12$a9UeVEbTJoETWLd3LCBRHeC1ep6AMRWZP0NX/qwd/meWnIskLMKiC','ROLE_PROFESSOR','adonis'); --password : pass
 
 --Request Hardcoded data
-INSERT INTO requests (id,name,mark,Dest,status,Uid) VALUES (1,'john', 8, 'vaggelis', '0', 'john') --password: papi
+INSERT INTO requests (id,name,mark,email,Dest,status,Uid) VALUES (1,'john', 8, 'john@gmail.com','vaggelis', '0', 'john'); --password: papi
+INSERT INTO requests (id,name,mark,email,Dest,status,Uid) VALUES (2,'john', 7, 'john@gmail.com','vaggelis', '0', 'john'); --password: papi
+
+--Recommendation Letter Hardcoded data
+INSERT INTO recommendation_letters(id,rid,text,uid, email) VALUES (3,1,'','vaggelis', 'company@gmail.com'); --password: pass
