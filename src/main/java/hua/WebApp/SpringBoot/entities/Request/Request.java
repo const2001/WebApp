@@ -14,13 +14,13 @@ public class Request {
     private String email;
     private Long  mark;
     private String Dest;
-    private int status = 0;
+    private String status = "Pending";
     private String Uid;
 
     public Request() {
     }
 
-    public Request(Long id, String name, String email, Long mark, String dest, int status) {
+    public Request(Long id, String name, String email, Long mark, String dest, String status) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -70,11 +70,11 @@ public class Request {
         Dest = dest;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int agreed) {
+    public void setStatus(String agreed) {
         this.status = agreed;
     }
 
