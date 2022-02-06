@@ -90,11 +90,11 @@
                                             };
 
                                         }
-                                        var index2, table = document.getElementById('display');
-                                        for (var i = 1; i < table.rows.length; i++) {
-                                            table.rows[i].cells[3].onclick = function () {
+                                        var index2, table2 = document.getElementById('display');
+                                        for (var i = 1; i < table2.rows.length; i++) {
+                                            table2.rows[i].cells[3].onclick = function () {
                                                 index2 = this.parentElement.cellIndex;
-                                                table.deleteCell(index2)
+                                                table2.deleteCell(index2);
                                                 console.log(index2);
                                             };
                                         }
