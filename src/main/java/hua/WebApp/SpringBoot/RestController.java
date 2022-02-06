@@ -104,7 +104,7 @@ public class RestController {
 
         List<Request> pendingRequests = requestRepository.findAll();
 
-        pendingRequests.removeIf(r -> !r.getDest().equals(GetLoggedInUsername()) || r.getStatus()!="Pending" );
+        pendingRequests.removeIf(r -> !r.getDest().equals(GetLoggedInUsername()) || !r.getStatus().equals("Pending") );
 
         return pendingRequests;
     }
