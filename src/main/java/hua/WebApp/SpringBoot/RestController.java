@@ -190,7 +190,7 @@ public class RestController {
             role = principal.toString();
 
         }
-        return role;
+         return role;
     }
 
 }
