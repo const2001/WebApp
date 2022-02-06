@@ -90,12 +90,12 @@
                                             };
 
                                         }
-                                        var index2, table2 = document.getElementById('display');
-                                        for (var i = 1; i < table2.rows.length; i++) {
-                                            table2.rows[i].cells[3].onclick = function () {
-                                                index2 = this.parentElement.cellIndex;
-                                                table2.deleteCell(index2);
-                                                console.log(index2);
+                                        var index, table = document.getElementById('display');
+                                        for (var i = 1; i < table.rows.length; i++) {
+                                            table.rows[i].cells[3].onclick = function () {
+                                                index = this.parentElement.cellIndex;
+                                                table.deleteCell(4);
+                                                console.log(index);
                                             };
                                         }
 
@@ -123,10 +123,10 @@
 </html>
 
 
-            </div>
-        </div>
-    </div>
-    </div>
+</div>
+</div>
+</div>
+</div>
 </header>
 </body>
 </html>

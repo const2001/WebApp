@@ -59,16 +59,15 @@
 
 
 
-                        <div class="form-group" style="color: #FFFFFF">
-                            <label>Όνομα καθηγητή: </label>
-                            <select name="dest" id="Dest">
+                            <label style="color: #FFFFFF">Όνομα καθηγητή: </label>
+                            <select name="dest" id="dest" style="color: lightseagreen">
                                 <option value="" disabled selected>Επέλεξε καθηγητή</option>
                                 <option value="vaggelis">Βαγγέλης</option>
                                 <option value="xristina">Χριστίνα</option>
                                 <option value="adonis">Αντώνης</option>
                             </select>
 
-                        </div>
+
 
                         <div class="form-group" style="color: #FFFFFF">
                             <label>Αίτημα: </label>
@@ -92,35 +91,37 @@
                                         'name': document.getElementById('name').value,
                                         'mark': document.getElementById('mark').value,
                                         'email': document.getElementById('email').value,
-                                        'Dest': document.getElementById('Dest').value
+                                        'dest': document.getElementById('dest').value
                                     };
+
                                     //check if an element is empty
                                     if (document.getElementById('name').value == "") {
                                         alert("complete all the fields!")
-                                        document.getElementById('name').value
-                                        return false
-                                    }
-                                    if (document.getElementById('email').value == "") {
-                                        alert("complete all the fields!")
-                                        document.getElementById('email').value
+                                        document.getElementById('name').style.borderColor = " red";
                                         return false
                                     }
                                     if (document.getElementById('mark').value == "") {
                                         alert("complete all the fields")
-                                        document.getElementById('mark').value
+                                        document.getElementById('mark').style.borderColor = " red";
+                                        return false
+                                    }
+                                    if(document.getElementById('mark').value < 0 || document.getElementById('mark').value > 10) {
+                                        alert("please enter a number between 0 and 10")
+                                        document.getElementById('mark').style.borderColor = " red";
+                                        return false
+                                    }
+                                    if (document.getElementById('email').value == "") {
+                                        alert("complete all the fields!")
+                                        document.getElementById('email').style.borderColor = " red";
                                         return false
                                     }
 
-                                    if(document.getElementById('mark').value < 0 || document.getElementById('mark').value > 10) {
-                                        alert("please enter a number between 0 and 10")
-                                        document.getElementById('mark').value
-                                        return false
-                                    }
-                                    if (document.getElementById('Dest').value == "") {
+                                    if (document.getElementById('dest').value == "") {
                                         alert("complete all the fields!")
-                                        document.getElementById('Dest').value
+                                        document.getElementById('dest').style.borderColor = " red";
                                         return false
                                     }
+
 
                                     var xhr = new XMLHttpRequest();
                                     xhr.open("POST", 'http://localhost:8080/addRequest', true);
