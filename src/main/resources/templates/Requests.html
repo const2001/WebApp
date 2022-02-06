@@ -20,6 +20,7 @@
                 <div id="MyRequests"></div>
                 <table class="table" id="display">
                     <thead>
+                    <th>Id</th>
                     <th>Βαθμός</th>
                     <th>Όνομα καθηγητή</th>
                     <th>Κατάσταση</th>
@@ -28,6 +29,7 @@
 
                     <tbody id="tbody1">
                     <tr>
+                        <td id="cell0"></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -51,7 +53,7 @@
                                     const results = JSON.parse(xhr.responseText);
                                     const item = results[0];
                                     try {
-                                        divElem.innerHtml = ` ${item.mark} ${item.dest} ${item.status}`;
+                                        divElem.innerHtml = `${item.id} ${item.mark} ${item.dest} ${item.status}`;
                                         console.log(divElem.innerHtml);
                                     } catch (err) {
                                         alert('You dont have any request');
@@ -72,59 +74,55 @@
                                         var cellA2 = ALLnewRow.insertCell(1);
                                         var cellA3 = ALLnewRow.insertCell(2);
                                         var cellA4 = ALLnewRow.insertCell(3);
+                                        var cellA5 = ALLnewRow.insertCell(4);
 
-
-                                        cellA1.innerHTML = item.mark;
-                                        cellA2.innerHTML = item.dest;
-                                        cellA3.innerHTML = item.status;
-                                        cellA4.innerHTML = "<input th:href=\"@{http://localhost:8080/deleteRequest/{requestId}}\" id=\"btn\" type=\"button\" class=\"btn\" value=\"Delete\" />";
+                                        cellA1.innerHTML = item.id;
+                                        cellA2.innerHTML = item.mark;
+                                        cellA3.innerHTML = item.dest;
+                                        cellA4.innerHTML = item.status;
+                                        cellA5.innerHTML = "<input th:href=\"@{http://localhost:8080/deleteRequest/{requestId}}\" id=\"btn\" type=\"button\" class=\"btn\" value=\"Delete\"/>";
 
                                         row++;
 
-
-                                        var index, table=document.getElementById('display');
+                                        // delete just the row
+                                        var index, requestsId, table=document.getElementById('display');
                                         for(var i=1; i<table.rows.length; i++){
-                                            table.rows[i].cells[3].onclick=function(){
-                                                index=this.parentElement.rowIndex;
-                                                table.deleteRow(index);
-                                                console.log(index);
-
-
+                                            table.rows[i].cells[4].onclick=function(){
+                                                   index=this.parentElement.rowIndex;
+                                                    table.deleteRow(index);
+                                                    console.log(index);
                                             };
-
                                         }
-
-                                        document.getElementById("btn").addEventListener("click", (event) => {
-
-                                            const requestsId = localStorage.getItem("tid").value;
-                                            alert("deleteRequest"+requestsId);
-                                            let xhr = new XMLHttpRequest();
-                                            xhr.open("DELETE", `http://localhost:8080/deleteRequest/${requestsId}`, true);
-                                            xhr.setRequestHeader('Content-type','application/json;');
-                                            xhr.onload = function () {
-                                                let question = JSON.parse(xhr.responseText);
-                                                if (xhr.readyState == 4 && xhr.status == "200") {
-                                                    console.table(display);
-                                                } else {
-                                                    // console.error(question);
-                                                }
-                                            }
-                                            xhr.send(null);
-                                        });
-                                    });
-
-
+                                     });
                                 }
                             }
-
-
                         }
-
                     });
 
+                </script>
 
+                <script>
+                    $('.tbody').on('click','.btn', function(){
+                        var currow=$(this).closest('tr');
+                        var col1=currow.find('td:eq(0)').text();
+                    })
 
-
+                    // delete the object from database
+                    document.getElementById('btn').addEventListener("click", (event) => {
+                        alert("deleteRequest" + requestsId);
+                        let xhr = new XMLHttpRequest();
+                        xhr.open("DELETE", `http://localhost:8080/deleteRequest/${requestsId}`, true);
+                        xhr.setRequestHeader('Content-type', 'application/json;');
+                        xhr.onload = function () {
+                            let question = JSON.parse(xhr.responseText);
+                            if (xhr.readyState == 4 && xhr.status == "200") {
+                                console.table('display');
+                            } else {
+                                // console.error(question);
+                            }
+                        }
+                        xhr.send();
+                    });
                 </script>
 
             </div>
