@@ -140,10 +140,10 @@ public class RestController {
     }
 
     @GetMapping("/viewLetters")
-    public List<Request> getAllLetterRequests(){
+    public List<RecommendationLetter> getAllLetterRequests(){
 
 
-        List<Request> recommendationLetters = requestRepository.findAll();
+        List<RecommendationLetter> recommendationLetters = recommendationLetterRepository.findAll();
 
         recommendationLetters.removeIf(r -> !r.getUid().equals(GetLoggedInUsername()));
         if (recommendationLetters.isEmpty()){
