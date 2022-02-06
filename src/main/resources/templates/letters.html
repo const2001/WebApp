@@ -76,11 +76,23 @@
 
 
                                         var index, table=document.getElementById('display');
-                                        for(var i=1; i<table.rows.length; i++){
-                                            table.rows[i].cells[2].onclick=function(){
-                                                index=this.parentElement.rowIndex;
+                                        for(var i=1; i<table.rows.length; i++) {
+                                            table.rows[i].cells[2].onclick = function () {
+                                                index = this.parentElement.rowIndex;
+                                                rid = this.parentElement.cells[0].innerHTML
                                                 table.deleteRow(index);
-                                                console.log(index);
+                                                let xhr = new XMLHttpRequest();
+                                                xhr.open("DELETE", `http://localhost:8080/deleteLetter/` + rid, true);
+                                                xhr.setRequestHeader('Content-type', 'application/json;');
+                                                xhr.onload = function () {
+                                                    let question = JSON.parse(xhr.responseText);
+                                                    if (xhr.readyState == 4 && xhr.status == "200") {
+                                                        console.table(display);
+                                                    } else {
+                                                        // console.error(question);
+                                                    }
+                                                }
+                                                xhr.send(null);
 
 
                                             };

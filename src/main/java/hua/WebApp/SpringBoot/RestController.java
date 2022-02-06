@@ -66,7 +66,7 @@ public class RestController {
     @PostMapping("/addRequest")
     public String addRequest (@RequestBody Request r){
         r.setUid(GetLoggedInUsername());
-        r.setStatus(0);
+        r.setStatus("Pending");
         requestRepository.save(r);
         r.setUid(GetLoggedInUsername());
         requestRepository.save(r);
@@ -104,7 +104,7 @@ public class RestController {
 
         List<Request> pendingRequests = requestRepository.findAll();
 
-        pendingRequests.removeIf(r -> !r.getDest().equals(GetLoggedInUsername()) || r.getStatus()!=0 );
+        pendingRequests.removeIf(r -> !r.getDest().equals(GetLoggedInUsername()) || r.getStatus()!="pending" );
 
         return pendingRequests;
     }

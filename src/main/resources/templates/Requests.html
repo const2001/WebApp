@@ -20,7 +20,7 @@
                 <div id="MyRequests"></div>
                 <table class="table" id="display">
                     <thead>
-                    <th>Id</th>
+                    <th>Μοναδικος αριθμος (ID)</th>
                     <th>Βαθμός</th>
                     <th>Όνομα καθηγητή</th>
                     <th>Κατάσταση</th>
@@ -29,7 +29,7 @@
 
                     <tbody id="tbody1">
                     <tr>
-                        <td id="cell0"></td>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -54,6 +54,7 @@
                                     const item = results[0];
                                     try {
                                         divElem.innerHtml = `${item.id} ${item.mark} ${item.dest} ${item.status}`;
+
                                         console.log(divElem.innerHtml);
                                     } catch (err) {
                                         alert('You dont have any request');
@@ -80,49 +81,51 @@
                                         cellA2.innerHTML = item.mark;
                                         cellA3.innerHTML = item.dest;
                                         cellA4.innerHTML = item.status;
-                                        cellA5.innerHTML = "<input th:href=\"@{http://localhost:8080/deleteRequest/{requestId}}\" id=\"btn\" type=\"button\" class=\"btn\" value=\"Delete\"/>";
+                                        cellA5.innerHTML = "<input th:href=\"{item.id}\" id=\"btn\" type=\"button\" class=\"btn\" value=\"Delete\" />";
 
                                         row++;
 
-                                        // delete just the row
-                                        var index, requestsId, table=document.getElementById('display');
+
+                                        var index, table=document.getElementById('display');
                                         for(var i=1; i<table.rows.length; i++){
                                             table.rows[i].cells[4].onclick=function(){
-                                                   index=this.parentElement.rowIndex;
-                                                    table.deleteRow(index);
-                                                    console.log(index);
+                                                index=this.parentElement.rowIndex;
+                                                rid =  this.parentElement.cells[0].innerHTML
+                                                table.deleteRow(index);
+                                                let xhr = new XMLHttpRequest();
+                                                xhr.open("DELETE", `http://localhost:8080/deleteRequest/`+rid, true);
+                                                xhr.setRequestHeader('Content-type','application/json;');
+                                                xhr.onload = function () {
+                                                    let question = JSON.parse(xhr.responseText);
+                                                    if (xhr.readyState == 4 && xhr.status == "200") {
+                                                        console.table(display);
+                                                    } else {
+                                                        // console.error(question);
+                                                    }
+                                                }
+                                                xhr.send(null);
+
+
                                             };
+
                                         }
-                                     });
+
+                                    });
+
+
+
                                 }
+
                             }
+
+
                         }
+
                     });
 
-                </script>
 
-                <script>
-                    $('.tbody').on('click','.btn', function(){
-                        var currow=$(this).closest('tr');
-                        var col1=currow.find('td:eq(0)').text();
-                    })
 
-                    // delete the object from database
-                    document.getElementById('btn').addEventListener("click", (event) => {
-                        alert("deleteRequest" + requestsId);
-                        let xhr = new XMLHttpRequest();
-                        xhr.open("DELETE", `http://localhost:8080/deleteRequest/${requestsId}`, true);
-                        xhr.setRequestHeader('Content-type', 'application/json;');
-                        xhr.onload = function () {
-                            let question = JSON.parse(xhr.responseText);
-                            if (xhr.readyState == 4 && xhr.status == "200") {
-                                console.table('display');
-                            } else {
-                                // console.error(question);
-                            }
-                        }
-                        xhr.send();
-                    });
+
                 </script>
 
             </div>
