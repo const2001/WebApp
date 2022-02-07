@@ -94,6 +94,11 @@ public class RestController {
                     "You dont have access to delete the request with id: "+ requestId
             );
         }
+        if (r.get().getStatus().equals("Accepted") ){
+            throw  new IllegalStateException(
+                    "You can't delete Accepted Requests! "
+            );
+        }
         requestRepository.deleteById(requestId);
         return "Request Deleted";
     }
