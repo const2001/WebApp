@@ -40,6 +40,12 @@ public class Controller {
         return "redirect:/homepage";
     }
 
+//    @GetMapping("/")
+//    public String home(){
+//        hasRole();
+//        return "redirect:/homepage";
+//    }
+
 
     @GetMapping("/homepage")
     public String homepage(){
@@ -89,8 +95,6 @@ public class Controller {
 
         return "recommendation letter";
     }
-
-
 
 
     @GetMapping("/viewLettersPage")

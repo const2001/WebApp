@@ -108,13 +108,33 @@
                                             };
 
                                         }
-                                        // for(var i=1; i<table.rows.length; i++) {
-                                        //     table.rows[i].cells[3].onclick = function () {
-                                        //         index = this.parentElement.rowIndex;
-                                        //         rid = this.parentElement.cells[2].innerHTML;
-                                        //         document.getElementById("btn1").disabled = true;
-                                        //     };
-                                        // };
+
+                                        for(var i=1; i<table.rows.length; i++) {
+                                            table.rows[i].cells[4].onclick = function () {
+                                                index = this.parentElement.rowIndex;
+                                                rid = this.parentElement.cells[0].innerHTML;
+
+                                                var requests = {};
+                                                requests.status = "Rejected";
+                                                var json = JSON.stringify(requests);
+
+                                                let xhr = new XMLHttpRequest();
+                                                xhr.open("PUT", `http://localhost:8080/setRequestStatus/` + rid, true);
+                                                xhr.setRequestHeader('Content-type', 'application/json;');
+                                                xhr.onload = function () {
+                                                    let question = JSON.parse(xhr.responseText);
+                                                    if (xhr.readyState == 4 && xhr.status == "200") {
+                                                        console.table(display);
+                                                    } else {
+                                                        // console.error(question);
+                                                    }
+                                                }
+                                                xhr.send(json);
+
+                                            };
+
+                                        }
+
                                     });
                                 }
                             }

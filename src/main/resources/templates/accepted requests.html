@@ -12,7 +12,7 @@
 <body>
 <header>
     <tbody>
-    <h1 class="heading">My Application List</h1>
+    <h1 class="heading">List of Accepted Requests</h1>
     <div class="row2">
         <div class="row d-flex justify-content-center">
             <div class="table-container">
@@ -60,6 +60,8 @@
                                     }
 
 
+
+
                                     var row = 1;
                                     // const items=results;
                                     //so if its here there is at least on book with that key
@@ -75,10 +77,18 @@
                                         cellA1.innerHTML = item.id;
                                         cellA2.innerHTML = item.mark;
                                         cellA3.innerHTML = item.uid;
-                                        cellA5.innerHTML = "<input href=\"http://localhost:8080/addRequestPage\" th:href=\"{item.id}\" id=\"btn\" type=\"button\" class=\"btn\" value=\"Letter\" />";
+                                        cellA4.innerHTML = "<input th:href=\"{item.id}\" id=\"btn\" type=\"button\" class=\"btn\" value=\"Letter\"/>";
 
                                         row++;
 
+                                        var index, table=document.getElementById('display');
+                                        for(var i=1; i<table.rows.length; i++) {
+                                            table.rows[i].cells[3].onclick = function () {
+                                                    index = this.parentElement.rowIndex;
+                                                    rid = this.parentElement.cells[0].innerHTML;
+                                                location.href = "http://localhost:8080/addLetterPage";
+                                            }
+                                        }
 
                                     });
 
