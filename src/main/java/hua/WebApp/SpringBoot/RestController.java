@@ -49,7 +49,6 @@ public class RestController {
     }
 
 
-
     private String GetLoggedInUsername(){
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
