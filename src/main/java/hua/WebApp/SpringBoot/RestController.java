@@ -128,7 +128,6 @@ public class RestController {
     @PutMapping("/setRequestStatus/{requestId}")
     public String setRequestStatus(@PathVariable("requestId") Long requestId,
                                    @Valid @RequestBody Request requestDetails){
-
         boolean exists =  requestRepository.existsById(requestId);
         if (!exists ){
             throw  new IllegalStateException(
