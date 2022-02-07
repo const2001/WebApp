@@ -109,13 +109,24 @@ public class RestController {
 
         List<Request> pendingRequests = requestRepository.findAll();
 
-        pendingRequests.removeIf(r -> !r.getDest().equals(GetLoggedInUsername()) || r.getStatus()!="pending" );
+        pendingRequests.removeIf(r -> !r.getDest().equals(GetLoggedInUsername()) || !r.getStatus().equals("Pending") );
 
         return pendingRequests;
     }
 
+    @GetMapping("/acceptedRequests")
+    public List<Request> getAllAcceptedRequests(){
+
+
+        List<Request> acceptedRequests = requestRepository.findAll();
+
+        acceptedRequests.removeIf(r -> !r.getDest().equals(GetLoggedInUsername()) || !r.getStatus().equals("Accepted") );
+
+        return acceptedRequests;
+    }
+
     @PutMapping("/setRequestStatus/{requestId}")
-    public String setRequestStatus(@PathVariable(value = "id") Long requestId,
+    public String setRequestStatus(@PathVariable("requestId") Long requestId,
                                    @Valid @RequestBody Request requestDetails){
 
         boolean exists =  requestRepository.existsById(requestId);
@@ -195,7 +206,7 @@ public class RestController {
             role = principal.toString();
 
         }
-         return role;
+        return role;
     }
 
 }

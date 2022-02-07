@@ -86,11 +86,10 @@
                                         for(var i=1; i<table.rows.length; i++) {
                                             table.rows[i].cells[3].onclick = function () {
                                                 index = this.parentElement.rowIndex;
-                                                rid = this.parentElement.cells[0].innerHTML
-                                                document.getElementById("btn2").disabled = true;
+                                                rid = this.parentElement.cells[0].innerHTML;
 
                                                 var requests = {};
-                                                requests.status = "John2";
+                                                requests.status = "Accepted";
                                                 var json = JSON.stringify(requests);
 
                                                 let xhr = new XMLHttpRequest();
@@ -110,14 +109,13 @@
                                             };
 
                                         }
-                                        for(var i=1; i<table.rows.length; i++) {
-                                            table.rows[i].cells[4].onclick = function () {
-                                                index = this.parentElement.rowIndex;
-                                                rid = this.parentElement.cells[2].innerHTML;
-                                                document.getElementsByName('rid');
-                                                // document.getElementById("btn1").disabled = true;
-                                            };
-                                        };
+                                        // for(var i=1; i<table.rows.length; i++) {
+                                        //     table.rows[i].cells[3].onclick = function () {
+                                        //         index = this.parentElement.rowIndex;
+                                        //         rid = this.parentElement.cells[2].innerHTML;
+                                        //         document.getElementById("btn1").disabled = true;
+                                        //     };
+                                        // };
                                     });
                                 }
                             }
