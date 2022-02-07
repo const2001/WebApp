@@ -1,18 +1,12 @@
 package hua.WebApp.SpringBoot;
 
-import hua.WebApp.SpringBoot.entities.RecommendationLetter.RecommendationLetter;
 import hua.WebApp.SpringBoot.entities.RecommendationLetter.RecommendationLetterRepository;
-import hua.WebApp.SpringBoot.entities.Request.Request;
 import hua.WebApp.SpringBoot.entities.Request.RequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.List;
-import java.util.Optional;
 
 @org.springframework.stereotype.Controller
 public class Controller {
@@ -69,7 +63,7 @@ public class Controller {
     @GetMapping("/acceptedRequestsPage")
     public String getAcceptedRequests() {
 
-        return "accepted requests";
+        return "acceptedRequests";
 
     }
 

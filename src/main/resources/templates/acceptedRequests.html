@@ -86,6 +86,7 @@
                                             table.rows[i].cells[3].onclick = function () {
                                                     index = this.parentElement.rowIndex;
                                                     rid = this.parentElement.cells[0].innerHTML;
+                                                sessionStorage.setItem("rid", rid);
                                                 location.href = "http://localhost:8080/addLetterPage";
                                             }
                                         }
