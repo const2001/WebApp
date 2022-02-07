@@ -2,55 +2,100 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Accepted Requests</title>
-    <link href="../static/style.css" th:href="@{/style.css}" rel="stylesheet" />
+    <title>Requests List</title>
+    <link href="../static/style2.css" th:href="@{/style2.css}" rel="stylesheet" />
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           inherity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJLSAwiGgFAW/dAiS6JXm"
           crossorigin="änonymous">
 
-    <style type="text/css"> *{
-        margin:0;
-        padding:0;
-        box-sizing:border-box;
-    }
-    body{
-        background-image:url(https://wallpaperaccess.com/full/537582.jpg);
-        font-family:'Times New Roman', sans-serif;
-    }
-
-
-    </style>
-
 <body>
-<div class="row2">
-    <div class="table-container">
-        <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card" style="background-color: lightsteelblue" position="absolute">
+<header>
+    <tbody>
+    <h1 class="heading">My Application List</h1>
+    <div class="row2">
+        <div class="row d-flex justify-content-center">
+            <div class="table-container">
 
-            <h1 class="heading">Δεκτές Αιτήσεις Φοιτητών</h1>
-
-            <table class="table">
-                <thead>
-                <tr>
+                <div id="MyRequests"></div>
+                <table class="table" id="display">
+                    <thead>
+                    <th>Id</th>
                     <th>Βαθμός</th>
                     <th>Όνομα φοιτητή</th>
-                    <th>Ενέργεια</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <a href="recommendation letter.html" class="btn btn-primary" style="color:white"> Rec. letter
-                        </a>
-                    </td>
+                    <th class="text-center">Δημιουργία επιστολής</th>
+                    </thead>
 
-                </tr>
-                </tbody>
-            </table>
+                    <tbody id="tbody1">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="float-center"></td>
+                    </tbody>
+                </table>
+
+                <div id="searchAllAcceptedRequestsArea"></div>
+                <script>
+                    window.addEventListener('load', (event) => {
+                        const xhr = new XMLHttpRequest();
+                        xhr.open('GET', 'http://localhost:8080/acceptedRequests', true);
+                        xhr.send();
+
+                        var table = document.getElementById("display");
+
+                        xhr.onreadystatechange = function () {
+                            if (xhr.readyState == 4) {
+                                if (xhr.status == 200) {
+                                    let divElem = document.getElementById('searchAllAcceptedRequestsArea');
+                                    const results = JSON.parse(xhr.responseText);
+                                    const item = results[0];
+                                    try {
+                                        divElem.innerHtml = `${item.id} ${item.mark} ${item.uid}`;
+
+                                        console.log(divElem.innerHtml);
+                                    } catch (err) {
+                                        alert('You dont have any accepted request');
+                                        return false;
+                                    }
+
+
+                                    var row = 1;
+                                    // const items=results;
+                                    //so if its here there is at least on book with that key
+                                    results.forEach((item) => {
+                                        var display = document.getElementById("display");
+                                        var ALLnewRow = display.insertRow(row);
+
+                                        var cellA1 = ALLnewRow.insertCell(0);
+                                        var cellA2 = ALLnewRow.insertCell(1);
+                                        var cellA3 = ALLnewRow.insertCell(2);
+                                        var cellA4 = ALLnewRow.insertCell(3);
+
+                                        cellA1.innerHTML = item.id;
+                                        cellA2.innerHTML = item.mark;
+                                        cellA3.innerHTML = item.uid;
+                                        cellA5.innerHTML = "<input href=\"http://localhost:8080/addRequestPage\" th:href=\"{item.id}\" id=\"btn\" type=\"button\" class=\"btn\" value=\"Letter\" />";
+
+                                        row++;
+
+
+                                    });
+
+                                }
+
+                            }
+
+                        }
+
+                    });
+
+                </script>
+
+            </div>
         </div>
     </div>
-</div>
+    </tbody>
+</header>
 </body>
 </html>

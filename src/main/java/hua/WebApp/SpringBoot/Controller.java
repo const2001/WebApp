@@ -60,6 +60,13 @@ public class Controller {
 
     }
 
+    @GetMapping("/acceptedRequestsPage")
+    public String getAcceptedRequests() {
+
+        return "accepted requests";
+
+    }
+
 
     @GetMapping("/addRequestPage")
     public String getAddRequest() {

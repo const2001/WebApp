@@ -55,7 +55,6 @@
                                         return false;
                                     }
 
-
                                     var row = 1;
                                     // const items=results;
                                     //so if its here there is at least on book with that key
@@ -78,25 +77,29 @@
                                         var index, table=document.getElementById('display');
                                         for(var i=1; i<table.rows.length; i++) {
                                             table.rows[i].cells[2].onclick = function () {
-                                                index = this.parentElement.rowIndex;
-                                                rid = this.parentElement.cells[0].innerHTML
-                                                table.deleteRow(index);
-                                                let xhr = new XMLHttpRequest();
-                                                xhr.open("DELETE", `http://localhost:8080/deleteLetter/` + rid, true);
-                                                xhr.setRequestHeader('Content-type', 'application/json;');
-                                                xhr.onload = function () {
-                                                    let question = JSON.parse(xhr.responseText);
-                                                    if (xhr.readyState == 4 && xhr.status == "200") {
-                                                        console.table(display);
-                                                    } else {
-                                                        // console.error(question);
+                                                let text = "Are you sure you want to delete this recommendation letter?";
+                                                if (confirm(text) == true) {
+                                                    index = this.parentElement.rowIndex;
+                                                    rid = this.parentElement.cells[0].innerHTML
+                                                    table.deleteRow(index);
+                                                    let xhr = new XMLHttpRequest();
+                                                    xhr.open("DELETE", `http://localhost:8080/deleteLetter/` + rid, true);
+                                                    xhr.setRequestHeader('Content-type', 'application/json;');
+                                                    xhr.onload = function () {
+                                                        let question = JSON.parse(xhr.responseText);
+                                                        if (xhr.readyState == 4 && xhr.status == "200") {
+                                                            console.table(display);
+                                                        } else {
+                                                            // console.error(question);
+                                                        }
                                                     }
+                                                    xhr.send(null);
+
+
+                                                } else{
+                                                    return null;
                                                 }
-                                                xhr.send(null);
-
-
                                             };
-
                                         }
 
                                     });

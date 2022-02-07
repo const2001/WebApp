@@ -81,35 +81,49 @@
                                         cellA5.innerHTML = "<input th:href=\"@{http://localhost:8080/deleteRequest/{requestId}}\" id=\"btn2\" type=\"button\" class=\"btn2\" value=\"Reject\" />";
                                         row++;
 
-                                        var index, table = document.getElementById('display');
-                                        for (var i = 1; i < table.rows.length; i++) {
+
+                                        var index, table=document.getElementById('display');
+                                        for(var i=1; i<table.rows.length; i++) {
+                                            table.rows[i].cells[3].onclick = function () {
+                                                index = this.parentElement.rowIndex;
+                                                rid = this.parentElement.cells[0].innerHTML
+                                                document.getElementById("btn2").disabled = true;
+
+                                                var requests = {};
+                                                requests.status = "John2";
+                                                var json = JSON.stringify(requests);
+
+                                                let xhr = new XMLHttpRequest();
+                                                xhr.open("PUT", `http://localhost:8080/setRequestStatus/` + rid, true);
+                                                xhr.setRequestHeader('Content-type', 'application/json;');
+                                                xhr.onload = function () {
+                                                    let question = JSON.parse(xhr.responseText);
+                                                    if (xhr.readyState == 4 && xhr.status == "200") {
+                                                        console.table(display);
+                                                    } else {
+                                                        // console.error(question);
+                                                    }
+                                                }
+                                                xhr.send(json);
+
+
+                                            };
+
+                                        }
+                                        for(var i=1; i<table.rows.length; i++) {
                                             table.rows[i].cells[4].onclick = function () {
                                                 index = this.parentElement.rowIndex;
-                                                table.deleteRow(index);
-                                                console.log(index);
+                                                rid = this.parentElement.cells[2].innerHTML;
+                                                document.getElementsByName('rid');
+                                                // document.getElementById("btn1").disabled = true;
                                             };
-
-                                        }
-                                        var index2, table2 = document.getElementById('display');
-                                        for (var i = 1; i < table2.rows.length; i++) {
-                                            table2.rows[i].cells[3].onclick = function () {
-                                                index2 = this.parentElement.cellIndex;
-                                                table2.deleteCell(index2);
-                                                console.log(index2);
-                                            };
-                                        }
-
+                                        };
                                     });
-
-
                                 }
                             }
-
-
                         }
 
                     });
-
 
                 </script>
 
