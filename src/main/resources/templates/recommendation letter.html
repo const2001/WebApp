@@ -49,7 +49,7 @@
                     </div>
 
 
-                        <button type="submit" class="btn" id="sendRequest">
+                        <button type="submit" class="btn" id="sendRequest" onclick="sessionStorage.getItem('btn').disabled=true;">
                             Υποβολή
                         </button>
 
@@ -95,6 +95,18 @@
                                 };
 
                                 xhr.send(JSON.stringify(RecommendationLetters));
+
+                                    // $(sessionStorage.getItem('btn')).prop('disabled', true);
+                                    // $(sessionStorage.getItem('btn')).css('background-color', 'grey');
+
+
+
+                                // function(){
+                                //     // get the item
+                                //     if ( '.btn' !== null ) {
+                                //         $(localStorage.getItem('btn')).prop('disabled', true);
+                                //     }
+                                // });
 
                             });
 

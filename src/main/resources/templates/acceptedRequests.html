@@ -87,6 +87,10 @@
                                                     index = this.parentElement.rowIndex;
                                                     rid = this.parentElement.cells[0].innerHTML;
                                                 sessionStorage.setItem("rid", rid);
+
+                                                    // set the item
+                                                sessionStorage.getItem("btn").disabled = true;
+
                                                 location.href = "http://localhost:8080/addLetterPage";
                                             }
                                         }

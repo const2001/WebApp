@@ -84,51 +84,63 @@
                                         var index, table=document.getElementById('display');
                                         for(var i=1; i<table.rows.length; i++) {
                                             table.rows[i].cells[3].onclick = function () {
-                                                index = this.parentElement.rowIndex;
-                                                rid = this.parentElement.cells[0].innerHTML;
+                                                let text = "Are you sure you want to accept this recommendation letter?";
+                                                if (confirm(text) == true) {
+                                                    index = this.parentElement.rowIndex;
+                                                    rid = this.parentElement.cells[0].innerHTML;
+                                                    table.deleteRow(index);
+                                                    var requests = {};
+                                                    requests.status = "Accepted";
+                                                    var json = JSON.stringify(requests);
 
-                                                var requests = {};
-                                                requests.status = "Accepted";
-                                                var json = JSON.stringify(requests);
-
-                                                let xhr = new XMLHttpRequest();
-                                                xhr.open("PUT", `http://localhost:8080/setRequestStatus/` + rid, true);
-                                                xhr.setRequestHeader('Content-type', 'application/json;');
-                                                xhr.onload = function () {
-                                                    let question = JSON.parse(xhr.responseText);
-                                                    if (xhr.readyState == 4 && xhr.status == "200") {
-                                                        console.table(display);
-                                                    } else {
-                                                        // console.error(question);
+                                                    let xhr = new XMLHttpRequest();
+                                                    xhr.open("PUT", `http://localhost:8080/setRequestStatus/` + rid, true);
+                                                    xhr.setRequestHeader('Content-type', 'application/json;');
+                                                    xhr.onload = function () {
+                                                        let question = JSON.parse(xhr.responseText);
+                                                        if (xhr.readyState == 4 && xhr.status == "200") {
+                                                            console.table(display);
+                                                        } else {
+                                                            // console.error(question);
+                                                        }
                                                     }
+                                                    xhr.send(json);
+                                                }else{
+                                                    return null;
                                                 }
-                                                xhr.send(json);
-
                                             };
 
                                         }
 
                                         for(var i=1; i<table.rows.length; i++) {
                                             table.rows[i].cells[4].onclick = function () {
-                                                index = this.parentElement.rowIndex;
-                                                rid = this.parentElement.cells[0].innerHTML;
 
-                                                var requests = {};
-                                                requests.status = "Rejected";
-                                                var json = JSON.stringify(requests);
+                                                let text = "Are you sure you want to reject this recommendation letter?";
+                                                if (confirm(text) == true) {
+                                                    index = this.parentElement.rowIndex;
+                                                    rid = this.parentElement.cells[0].innerHTML;
+                                                    table.deleteRow(index);
+                                                    var requests = {};
+                                                    requests.status = "Rejected";
+                                                    var json = JSON.stringify(requests);
 
-                                                let xhr = new XMLHttpRequest();
-                                                xhr.open("PUT", `http://localhost:8080/setRequestStatus/` + rid, true);
-                                                xhr.setRequestHeader('Content-type', 'application/json;');
-                                                xhr.onload = function () {
-                                                    let question = JSON.parse(xhr.responseText);
-                                                    if (xhr.readyState == 4 && xhr.status == "200") {
-                                                        console.table(display);
-                                                    } else {
-                                                        // console.error(question);
+                                                    let xhr = new XMLHttpRequest();
+                                                    xhr.open("PUT", `http://localhost:8080/setRequestStatus/` + rid, true);
+                                                    xhr.setRequestHeader('Content-type', 'application/json;');
+                                                    xhr.onload = function () {
+                                                        let question = JSON.parse(xhr.responseText);
+                                                        if (xhr.readyState == 4 && xhr.status == "200") {
+                                                            console.table(display);
+                                                        } else {
+                                                            // console.error(question);
+                                                        }
                                                     }
+                                                    xhr.send(json);
+                                                }else{
+                                                    return null;
                                                 }
-                                                xhr.send(json);
+
+
 
                                             };
 

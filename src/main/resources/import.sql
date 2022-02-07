@@ -17,4 +17,4 @@ INSERT INTO requests (id,name,mark,email,Dest,status,Uid) VALUES (200,'john', 7,
 INSERT INTO requests (id,name,mark,email,Dest,status,Uid) VALUES (300,'Eleni', 7, 'eleni@gmail.com','vaggelis', 'Pending', 'eleni'); --password: papi
 
 --Recommendation Letter Hardcoded data
-INSERT INTO recommendation_letters(id,rid,text,uid, email) VALUES (300,1,'','vaggelis', 'company@gmail.com'); --password: pass
+INSERT INTO recommendation_letters(id,rid,text,uid, email) VALUES (300,1,'"C:\Users\vaggelis\Documents\Επιστολή"','vaggelis', 'company@gmail.com'); --password: pass
