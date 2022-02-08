@@ -164,6 +164,11 @@
                                     };
 
                                     xhr.send(JSON.stringify(Request));
+                                    document.getElementById("sendRequest").onclick = function() {
+                                        //disable
+                                        this.disabled = true;
+                                    }
+                                    location.href = "http://localhost:8080/homepage#mainpage";
 
                                 });
 

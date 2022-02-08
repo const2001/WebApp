@@ -64,8 +64,6 @@
                                     }
 
 
-
-
                                     var row = 1;
                                     // const items=results;
                                     //so if its here there is at least on book with that key
@@ -95,14 +93,11 @@
                                                     index = this.parentElement.rowIndex;
                                                     rid = this.parentElement.cells[0].innerHTML;
                                                     emailEx= this.parentElement.cells[4].innerHTML;
-                                                    var requests = {};
-                                                    requests.status = "Done";
-                                                    var json = JSON.stringify(requests);
+
 
                                                     button=this.parentElement.cells[3].innerHTML;
-                                                sessionStorage.setItem("rid", rid);
-                                                sessionStorage.setItem("emailEx", emailEx);
-
+                                                    sessionStorage.setItem("rid", rid);
+                                                    sessionStorage.setItem("emailEx", emailEx);
 
 
                                                 location.href = "http://localhost:8080/addLetterPage";
