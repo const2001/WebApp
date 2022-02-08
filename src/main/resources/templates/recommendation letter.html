@@ -50,7 +50,7 @@
                     </div>
 
 
-                    <button type="submit" class="btn" id="sendRequest">
+                    <button type="submit" class="btn" id="sendRequest" this.disabled=true;>
                         Υποβολή
                     </button>
 
@@ -99,6 +99,10 @@
                                 };
 
                                 xhr.send(JSON.stringify(RecommendationLetters));
+                                document.getElementById("sendRequest").onclick = function() {
+                                    //disable
+                                    this.disabled = true;
+                                }
                             });
 
                         });
