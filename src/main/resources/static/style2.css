@@ -11,9 +11,10 @@ header{
     font-family:'Times New Roman', sans-serif;
     height: 100vh;
     -webkit-background-size:cover;
-    background-size: cover;
+    background-size:inherit;
     background-position: center center;
     position: relative;
+    display: flex;
 }
 
 .card-body{

@@ -95,6 +95,9 @@
                                                     index = this.parentElement.rowIndex;
                                                     rid = this.parentElement.cells[0].innerHTML;
                                                     emailEx= this.parentElement.cells[4].innerHTML;
+                                                    var requests = {};
+                                                    requests.status = "Done";
+                                                    var json = JSON.stringify(requests);
 
                                                     button=this.parentElement.cells[3].innerHTML;
                                                 sessionStorage.setItem("rid", rid);
@@ -104,6 +107,18 @@
 
                                                 location.href = "http://localhost:8080/addLetterPage";
 
+                                                let xhr = new XMLHttpRequest();
+                                                xhr.open("PUT", `http://localhost:8080/setRequestStatus/` + rid, true);
+                                                xhr.setRequestHeader('Content-type', 'application/json;');
+                                                xhr.onload = function () {
+                                                    let question = JSON.parse(xhr.responseText);
+                                                    if (xhr.readyState == 4 && xhr.status == "200") {
+                                                        console.table(display);
+                                                    } else {
+                                                        // console.error(question);
+                                                    }
+                                                }
+                                                xhr.send(json);
 
                                             }
                                         }
