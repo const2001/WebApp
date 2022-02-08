@@ -21,13 +21,17 @@
                 <table class="table" id="display">
                     <thead>
                     <th>Id</th>
-                    <th>Βαθμός</th>
                     <th>Όνομα φοιτητή</th>
+                    <th>Αίτημα φοιτητή</th>
+                    <th>Βαθμός</th>
+                    <th>Email εξωτερικού φορέα</th>
                     <th class="text-center">Δημιουργία επιστολής</th>
                     </thead>
 
                     <tbody id="tbody1">
                     <tr>
+                        <td></td>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -51,7 +55,7 @@
                                     const results = JSON.parse(xhr.responseText);
                                     const item = results[0];
                                     try {
-                                        divElem.innerHtml = `${item.id} ${item.mark} ${item.uid}`;
+                                        divElem.innerHtml = `${item.id} ${item.uid} ${item.text} ${item.mark}, ${item.mail}`;
 
                                         console.log(divElem.innerHtml);
                                     } catch (err) {
@@ -73,31 +77,30 @@
                                         var cellA2 = ALLnewRow.insertCell(1);
                                         var cellA3 = ALLnewRow.insertCell(2);
                                         var cellA4 = ALLnewRow.insertCell(3);
+                                        var cellA5 = ALLnewRow.insertCell(4);
+                                        var cellA6 = ALLnewRow.insertCell(5);
 
                                         cellA1.innerHTML = item.id;
-                                        cellA2.innerHTML = item.mark;
-                                        cellA3.innerHTML = item.uid;
-                                        cellA4.innerHTML = "<input th:href=\"{item.id}\" id=\"btn\" type=\"button\" class=\"btn\" value=\"Letter\"/>";
+                                        cellA2.innerHTML = item.uid;
+                                        cellA3.innerHTML = item.text;
+                                        cellA4.innerHTML = item.mark;
+                                        cellA5.innerHTML = item.mail;
+                                        cellA6.innerHTML = "<input th:href=\"{item.id}\" id=\"btn\" type=\"button\" class=\"btn\" value=\"Letter\"/>";
 
                                         row++;
 
                                         var index, table=document.getElementById('display');
                                         for(var i=1; i<table.rows.length; i++) {
-                                            table.rows[i].cells[3].onclick = function () {
+                                            table.rows[i].cells[5].onclick = function () {
                                                     index = this.parentElement.rowIndex;
                                                     rid = this.parentElement.cells[0].innerHTML;
+                                                    emailEx= this.parentElement.cells[4].innerHTML;
+
                                                     button=this.parentElement.cells[3].innerHTML;
                                                 sessionStorage.setItem("rid", rid);
-
-                                                var idRequest= sessionStorage.getItem("rid");
-
-                                                if(sessionStorage.getItem("rid").value === sessionStorage.getItem("rid").value){
-                                                    button.disabled = true;
-                                                }
+                                                sessionStorage.setItem("emailEx", emailEx);
 
 
-                                                    // set the item
-                                                sessionStorage.setItem("button", button);
 
                                                 location.href = "http://localhost:8080/addLetterPage";
 

@@ -12,18 +12,22 @@ public class Request {
     private Long id;
     private String name;
     private String email;
+    private String text;
     private Long  mark;
     private String Dest;
     private String status = "Pending";
     private String Uid;
+    private String mail;
 
     public Request() {
     }
 
-    public Request(Long id, String name, String email, Long mark, String dest, String status) {
+    public Request(Long id, String name, String email, Long mark, String dest, String status, String text, String mail) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.mail = mail;
+        this.text = text;
         this.mark = mark;
         Dest = dest;
         this.status = status;
@@ -52,6 +56,14 @@ public class Request {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 
     public Long getMark() {
@@ -84,6 +96,14 @@ public class Request {
 
     public void setUid(String uid) {
         Uid = uid;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
 }

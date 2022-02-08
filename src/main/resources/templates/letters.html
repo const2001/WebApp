@@ -107,7 +107,14 @@
                                                     return null;
                                                 }
                                             };
-                                            sessionStorage.setItem("rid", rid);
+
+                                            var hasVal = Object.values(cellA2.innerHTML).includes(sessionStorage.getItem("rid"));
+
+                                            if(hasVal === true){
+                                                sessionStorage.getItem("button").disabled = true;
+                                            }
+
+
                                         }
 
                                     });

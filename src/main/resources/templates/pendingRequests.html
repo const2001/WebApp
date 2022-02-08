@@ -20,8 +20,10 @@
                     <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Βαθμός</th>
                         <th>Όνομα φοιτητή</th>
+                        <th>Αίτημα φοιτητή</th>
+                        <th>Βαθμός</th>
+                        <th>Email εξωτερικού φορέα</th>
                         <th class="text-center">Αποδοχή</th>
                         <th class="text-center">Απόρριψη</th>
                     </tr>
@@ -29,6 +31,8 @@
 
                     <tbody id="tbody1">
                     <tr>
+                        <td></td>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -54,7 +58,7 @@
                                     const results = JSON.parse(xhr.responseText);
                                     const item = results[0];
                                     try {
-                                        divElem.innerHtml = `${item.id} ${item.mark} ${item.uid}`;
+                                        divElem.innerHtml = `${item.id} ${item.uid} ${item.text} ${item.mark} ${item.mail} `;
                                         console.log(divElem.innerHtml);
                                     } catch (err) {
                                         alert('You dont have any pending request');
@@ -73,17 +77,21 @@
                                         var cellA3 = AllNewRow.insertCell(2);
                                         var cellA4 = AllNewRow.insertCell(3);
                                         var cellA5 = AllNewRow.insertCell(4);
+                                        var cellA6 = AllNewRow.insertCell(5);
+                                        var cellA7 = AllNewRow.insertCell(6);
 
                                         cellA1.innerHTML = item.id;
-                                        cellA2.innerHTML = item.mark;
-                                        cellA3.innerHTML = item.uid;
-                                        cellA4.innerHTML = "<input th:href=\"@{http://localhost:8080/editRequest/{requestId}}\" id=\"btn1\" type=\"button\" class=\"btn1\" value=\"Accept\" />";
-                                        cellA5.innerHTML = "<input th:href=\"@{http://localhost:8080/deleteRequest/{requestId}}\" id=\"btn2\" type=\"button\" class=\"btn2\" value=\"Reject\" />";
+                                        cellA2.innerHTML = item.uid;
+                                        cellA3.innerHTML = item.text;
+                                        cellA4.innerHTML = item.mark;
+                                        cellA5.innerHTML = item.mail;
+                                        cellA6.innerHTML = "<input th:href=\"@{http://localhost:8080/editRequest/{requestId}}\" id=\"btn1\" type=\"button\" class=\"btn1\" value=\"Accept\" />";
+                                        cellA7.innerHTML = "<input th:href=\"@{http://localhost:8080/deleteRequest/{requestId}}\" id=\"btn2\" type=\"button\" class=\"btn2\" value=\"Reject\" />";
                                         row++;
 
                                         var index, table=document.getElementById('display');
                                         for(var i=1; i<table.rows.length; i++) {
-                                            table.rows[i].cells[3].onclick = function () {
+                                            table.rows[i].cells[5].onclick = function () {
                                                 let text = "Are you sure you want to accept this recommendation letter?";
                                                 if (confirm(text) == true) {
                                                     index = this.parentElement.rowIndex;
@@ -113,7 +121,7 @@
                                         }
 
                                         for(var i=1; i<table.rows.length; i++) {
-                                            table.rows[i].cells[4].onclick = function () {
+                                            table.rows[i].cells[6].onclick = function () {
 
                                                 let text = "Are you sure you want to reject this recommendation letter?";
                                                 if (confirm(text) == true) {

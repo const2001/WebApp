@@ -14,13 +14,15 @@ public class RecommendationLetter {
     private String Text;
     private String Uid;
     private String email;
+    private String prof_email;
     public RecommendationLetter() {
 
     }
 
-    public RecommendationLetter(Long id, String text, String email) {
+    public RecommendationLetter(Long id, String text, String email, String prof_email) {
         this.id = id;
         this.email = email;
+        this.prof_email = prof_email;
         Text = text;
     }
 
@@ -46,6 +48,14 @@ public class RecommendationLetter {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getProf_email() {
+        return prof_email;
+    }
+
+    public void setProf_email(String prof_email) {
+        this.prof_email = prof_email;
     }
 
     public Long getRid() {

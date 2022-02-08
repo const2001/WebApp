@@ -13,13 +13,13 @@
 </head>
 <body>
 <header>
-<div class="row">
-    <div class="flex-container">
-        <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card" style="background-color: cadetblue" >
+    <div class="row">
+        <div class="flex-container">
+            <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card" style="background-color: cadetblue" >
 
-            <h1 class="text-center" style="color: #fdfbff">Φόρμα Συστατικής επιστολής</h1>
+                <h1 class="text-center" style="color: #fdfbff">Φόρμα Συστατικής επιστολής</h1>
 
-            <div class="card-body">
+                <div class="card-body">
                     <div class="form-group" style="color: #FFFFFF">
                         <label>Όνομα: </label>
                         <input
@@ -32,27 +32,27 @@
                     </div>
 
                     <div class="form-group" style="color: #FFFFFF">
-                        <label>Email: </label>
+                        <label>Your email: </label>
                         <input
                                 type="text"
                                 name="email"
-                                id="email"
+                                id="prof_email"
                                 class="form-control"
                                 placeholder="Enter the email of external body"
                         />
                     </div>
 
+
                     <div class="form-group" style="color: #FFFFFF">
                         <label>Συστατική επιστολή: </label>
                         <p></p>
-                    <input type="file" id="text" accept=".doc">
+                        <input type="file" id="text" accept=".doc">
                     </div>
 
 
-                        <button type="submit" class="btn" id="sendRequest">
-                            Υποβολή
-                        </button>
-
+                    <button type="submit" class="btn" id="sendRequest">
+                        Υποβολή
+                    </button>
 
                     <script type="text/javascript">
                         window.addEventListener('load', (event) => {
@@ -61,7 +61,8 @@
                                 const RecommendationLetters = {
                                     'rid': sessionStorage.getItem("rid"),
                                     'name': document.getElementById('name').value,
-                                    'email': document.getElementById('email').value,
+                                    'prof_email': document.getElementById('prof_email').value,
+                                    'email': sessionStorage.getItem("emailEx"),
                                     'text': document.getElementById('text').value
                                 };
                                 //check if an element is empty
@@ -70,11 +71,14 @@
                                     document.getElementById('name').value
                                     return false
                                 }
-                                if (document.getElementById('email').value == "") {
+
+                                if (document.getElementById('prof_email').value == "") {
                                     alert("complete all the fields!")
-                                    document.getElementById('email').value
+                                    document.getElementById('prof_email').value
                                     return false
                                 }
+
+
                                 if (document.getElementById('text').value == "") {
                                     alert("complete all the fields")
                                     document.getElementById('text').value
@@ -84,7 +88,6 @@
                                 var xhr = new XMLHttpRequest();
                                 xhr.open("POST", 'http://localhost:8080/addLetter', true);
                                 xhr.setRequestHeader("Content-Type", "application/json");
-                                sessionStorage.getItem("button").disabled = true;
                                 xhr.onreadystatechange = function() {
                                     if (xhr.readyState == 4) {
                                         if (xhr.status == 200) {
@@ -96,30 +99,17 @@
                                 };
 
                                 xhr.send(JSON.stringify(RecommendationLetters));
-
-                                    // $(sessionStorage.getItem('btn')).prop('disabled', true);
-                                    // $(sessionStorage.getItem('btn')).css('background-color', 'grey');
-
-
-
-                                // function(){
-                                //     // get the item
-                                //     if ( '.btn' !== null ) {
-                                //         $(localStorage.getItem('btn')).prop('disabled', true);
-                                //     }
-                                // });
-
                             });
 
                         });
                     </script>
 
+                </div>
+                <p></p>
+                <div id="status"></div>
             </div>
-            <p></p>
-            <div id="status"></div>
         </div>
     </div>
-</div>
 
 </header>
 </body>
