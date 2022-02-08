@@ -86,12 +86,22 @@
                                             table.rows[i].cells[3].onclick = function () {
                                                     index = this.parentElement.rowIndex;
                                                     rid = this.parentElement.cells[0].innerHTML;
+                                                    button=this.parentElement.cells[3].innerHTML;
                                                 sessionStorage.setItem("rid", rid);
 
+                                                var idRequest= sessionStorage.getItem("rid");
+
+                                                if(sessionStorage.getItem("rid").value === sessionStorage.getItem("rid").value){
+                                                    button.disabled = true;
+                                                }
+
+
                                                     // set the item
-                                                sessionStorage.getItem("btn").disabled = true;
+                                                sessionStorage.setItem("button", button);
 
                                                 location.href = "http://localhost:8080/addLetterPage";
+
+
                                             }
                                         }
 
