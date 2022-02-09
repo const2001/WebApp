@@ -93,17 +93,32 @@
                                         if (xhr.status == 200) {
                                             alert(xhr.responseText);
                                             location.href = "http://localhost:8080/homepage#mainpage";
+
                                         }
                                     }
+                                    rid= sessionStorage.getItem("rid");
+                                    var requests = {};
+                                    requests.status = "Done";
+                                    var json = JSON.stringify(requests);
+                                    let xhr1 = new XMLHttpRequest();
+                                    xhr1.open("PUT", `http://localhost:8080/setRequestStatus/` + rid, true);
+                                    xhr1.setRequestHeader('Content-type', 'application/json;');
+
+                                    xhr1.onload = function () {
+                                        let question = JSON.parse(xhr1.responseText);
+                                        if (xhr1.readyState == 4 && xhr1.status == "200") {
+                                            console.table(display);
+                                        } else {
+                                            // console.error(question);
+                                        }
+                                    }
+                                    xhr1.send(json);
 
 
                                 };
 
                                 xhr.send(JSON.stringify(RecommendationLetters));
-                                document.getElementById("sendRequest").onclick = function() {
-                                    //disable
-                                    this.disabled = true;
-                                }
+
 
                             });
 

@@ -14,7 +14,8 @@ header{
     background-size:inherit;
     background-position: center center;
     position: relative;
-    display: flex;
+    background-size:100%;
+    background-repeat: initial;
 }
 
 .card-body{
