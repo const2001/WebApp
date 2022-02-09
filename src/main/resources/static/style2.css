@@ -6,17 +6,7 @@
     width: 1170px;
     margin:auto;
 }
-header{
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),url(https://hdwallsource.com/img/2017/2/firewatch-landscape-wallpaper-59154-60938-hd-wallpapers.jpg);
-    font-family:'Times New Roman', sans-serif;
-    height: 100vh;
-    -webkit-background-size:cover;
-    background-size:inherit;
-    background-position: center center;
-    position: relative;
-    background-size:100%;
 
-}
 
 .card-body{
     text-align:center;

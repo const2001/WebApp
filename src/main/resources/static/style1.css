@@ -6,13 +6,7 @@
     width: 1170px;
     margin:auto;
 }
-header{
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),url(https://wallpapercave.com/uwp/uwp1197581.jpeg);
-    font-family:'Times New Roman', sans-serif;
-    background-size: cover;
-    height: 100%;
-    overflow: hidden;
-}
+
 .card-body{
     text-align:center;
 }
