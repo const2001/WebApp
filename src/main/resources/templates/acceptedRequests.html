@@ -98,6 +98,8 @@
                                         var index, table=document.getElementById('display');
                                         for(var i=1; i<table.rows.length; i++) {
                                             table.rows[i].cells[5].onclick = function () {
+
+
                                                     index = this.parentElement.rowIndex;
                                                     rid = this.parentElement.cells[0].innerHTML;
                                                     emailEx= this.parentElement.cells[4].innerHTML;

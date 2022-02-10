@@ -97,27 +97,36 @@
                                         var index, table=document.getElementById('display');
                                         for(var i=1; i<table.rows.length; i++){
                                             table.rows[i].cells[4].onclick=function() {
-                                                let text = "Are you sure you want to delete this request?";
-                                                if (confirm(text) == true) {
-                                                    index = this.parentElement.rowIndex;
-                                                    rid = this.parentElement.cells[0].innerHTML
-                                                    table.deleteRow(index);
-                                                    let xhr = new XMLHttpRequest();
-                                                    xhr.open("DELETE", `http://localhost:8080/deleteRequest/` + rid, true);
-                                                    xhr.setRequestHeader('Content-type', 'application/json;');
-                                                    xhr.onload = function () {
-                                                        let question = JSON.parse(xhr.responseText);
-                                                        if (xhr.readyState == 4 && xhr.status == "200") {
-                                                            console.table(display);
-                                                        } else {
-                                                            // console.error(question);
+
+                                                state=this.parentElement.cells[3].innerHTML
+                                                if(state==="Accepted") {
+                                                    alert("You can't delete accepted requests!");
+
+                                                }else {
+                                                    let text = "Are you sure you want to delete this request?";
+
+                                                    if (confirm(text) == true) {
+
+                                                        index = this.parentElement.rowIndex;
+                                                        rid = this.parentElement.cells[0].innerHTML
+                                                        table.deleteRow(index);
+                                                        let xhr = new XMLHttpRequest();
+                                                        xhr.open("DELETE", `http://localhost:8080/deleteRequest/` + rid, true);
+                                                        xhr.setRequestHeader('Content-type', 'application/json;');
+                                                        xhr.onload = function () {
+                                                            let question = JSON.parse(xhr.responseText);
+                                                            if (xhr.readyState == 4 && xhr.status == "200") {
+                                                                console.table(display);
+                                                            } else {
+                                                                // console.error(question);
+                                                            }
                                                         }
+                                                        xhr.send(null);
+
+
+                                                    } else {
+                                                        return null;
                                                     }
-                                                    xhr.send(null);
-
-
-                                                }else{
-                                                    return null;
                                                 }
                                             };
                                         }
