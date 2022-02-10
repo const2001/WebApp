@@ -32,11 +32,13 @@
                     <th>Βαθμός</th>
                     <th>Όνομα καθηγητή</th>
                     <th>Κατάσταση</th>
+                    <th>Επεξεργασία</th>
                     <th>Διαγραφή</th>
                     </thead>
 
                     <tbody id="tbody1">
                     <tr>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -84,21 +86,25 @@
                                         var cellA3 = ALLnewRow.insertCell(2);
                                         var cellA4 = ALLnewRow.insertCell(3);
                                         var cellA5 = ALLnewRow.insertCell(4);
+                                        var cellA6 = ALLnewRow.insertCell(5);
 
                                         cellA1.innerHTML = item.id;
                                         cellA2.innerHTML = item.mark;
                                         cellA3.innerHTML = item.dest;
                                         cellA4.innerHTML = item.status;
-                                        cellA5.innerHTML = "<input th:href=\"{item.id}\" id=\"btn\" type=\"button\" class=\"btn\" value=\"Delete\" />";
+                                        cellA5.innerHTML = "<input th:href=\"{item.id}\" id=\"btn\" type=\"button\" class=\"btn\" value=\"Edit\" />";
+                                        cellA6.innerHTML = "<input th:href=\"{item.id}\" id=\"btn\" type=\"button\" class=\"btn\" value=\"Delete\" />";
 
                                         row++;
  
 
                                         var index, table=document.getElementById('display');
+
                                         for(var i=1; i<table.rows.length; i++){
-                                            table.rows[i].cells[4].onclick=function() {
+                                            table.rows[i].cells[5].onclick=function() {
 
                                                 state=this.parentElement.cells[3].innerHTML
+
                                                 if(state==="Accepted") {
                                                     alert("You can't delete accepted requests!");
 
@@ -127,6 +133,24 @@
                                                     } else {
                                                         return null;
                                                     }
+                                                }
+                                            };
+
+                                            table.rows[i].cells[4].onclick=function() {
+                                                state=this.parentElement.cells[3].innerHTML
+                                                if(state==="Pending") {
+
+
+                                                    index = this.parentElement.rowIndex;
+
+                                                    var rid = this.parentElement.cells[0].innerHTML;
+                                                    sessionStorage.setItem("rid", rid);
+                                                    sessionStorage.setItem("display", display);
+
+                                                    location.href = "http://localhost:8080/editRequestPage/{requestId}";
+
+                                                }else {
+                                                    alert("Only pending requests you can edit!");
                                                 }
                                             };
                                         }
