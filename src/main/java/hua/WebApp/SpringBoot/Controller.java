@@ -95,9 +95,6 @@ public class Controller {
 
         return "letters";
     }
-    public static String returnHome(){
-        return "redirect:/homepage";
-    }
 
     private String hasRole(){
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
