@@ -87,6 +87,11 @@ public class RestController {
                     "You dont have access to change the status of this request with id: " + requestId
             );
         }
+        if (r.get().getStatus().equals("Accepted") ){
+            throw  new IllegalStateException(
+                    "You can't edit Accepted Requests! "
+            );
+        }
         Request request =  r.get();
         request.setEmail(requestDetails.getEmail());
         request.setText(requestDetails.getText());
