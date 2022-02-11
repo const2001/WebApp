@@ -74,20 +74,20 @@
                                     'text': document.getElementById('text').value
                                 };
 
-                                var nameformat=/^[α-ζΑ-Ζ]/g;
+                              //  var nameformat=/^[α-ζΑ-Ζ]/g;
                                 var mailformat = /[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-                                var prof_email = document.getElementById("email").value;
+                                var prof_email = document.getElementById("prof_email").value;
                                 var name= document.getElementById("name").value;
 
                                 //check if an element is empty
-                                if (document.getElementById('name').value === "" || !name.match(nameformat)) {
+                                if (document.getElementById('name').value === "" ) {
                                     alert("complete all the fields with correct input!")
                                     document.getElementById('name').style.borderColor = " red";
                                     return false
                                 }
 
-                                if (document.getElementById('prof_email').value == "" || !prof_email.match(emailformat)) {
-                                    alert("complete all the fields with corret input!")
+                                if (document.getElementById('prof_email').value == "" || !prof_email.match(mailformat)) {
+                                    alert("complete all the fields with correct input!")
                                     document.getElementById('prof_email').value
                                     return false
                                 }

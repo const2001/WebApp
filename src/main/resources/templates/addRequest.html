@@ -124,13 +124,13 @@
 
 
                                 //check if an element is empty
-                                if (document.getElementById('name').value === "" || !name.match(nameformat)) {
+                                if (document.getElementById('name').value === "" ) {
                                     alert("complete all the fields with correct input!")
                                     document.getElementById('name').style.borderColor = " red";
                                     return false
                                 }
 
-                                if (document.getElementById('email').value === "" || !email.match(mailformat)) {
+                                if (document.getElementById('email').value === "" ) {
                                     alert("complete all the fields with correct input!")
                                     document.getElementById('email').style.borderColor = " red";
                                     return false

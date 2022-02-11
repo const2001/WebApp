@@ -73,8 +73,29 @@ public class RestController {
     }
 
     @PutMapping("/editRequest/{requestId}")
-    public String editRequest(@PathVariable("requestId") Long requestId){
-        //TODO
+    public String editRequest(@PathVariable("requestId") Long requestId,
+                              @Valid @RequestBody Request requestDetails){
+        boolean exists = requestRepository.existsById(requestId);
+        if (!exists) {
+            throw new IllegalStateException(
+                    "request with id : " + requestId + " does not exists"
+            );
+        }
+        Optional<Request> r = requestRepository.findById(requestId);
+        if (!r.get().getUid().equals(GetLoggedInUsername())) {
+            throw new IllegalStateException(
+                    "You dont have access to change the status of this request with id: " + requestId
+            );
+        }
+        Request request =  r.get();
+        request.setEmail(requestDetails.getEmail());
+        request.setText(requestDetails.getText());
+        request.setDest(requestDetails.getDest());
+        request.setMail(requestDetails.getEmail());
+        request.setMark(requestDetails.getMark());
+        request.setName(requestDetails.getName());
+        request.setText(requestDetails.getText());
+        requestRepository.save(request);
         return "Request Updated";
     }
     @DeleteMapping( "deleteRequest/{requestId}")
@@ -170,8 +191,25 @@ public class RestController {
 
 
     @PutMapping("/editLetter/{letterId}")
-    public String editLetter(@PathVariable("letterId") Long letterId){
-        //TODO
+    public String editLetter(@PathVariable("letterId") Long letterId,
+                             @Valid @RequestBody RecommendationLetter letterDetails) {
+        boolean exists = recommendationLetterRepository.existsById(letterId);
+        if (!exists) {
+            throw new IllegalStateException(
+                    "letter with id : " + letterId + " does not exists"
+            );
+        }
+        Optional<RecommendationLetter> l = recommendationLetterRepository.findById(letterId);
+        if (!l.get().getUid().equals(GetLoggedInUsername())) {
+            throw new IllegalStateException(
+                    "You dont have access to change the status of this letter with id: " + letterId
+            );
+        }
+        RecommendationLetter letter =  l.get();
+        letter.setEmail(letterDetails.getEmail()); ;
+        letter.setText(letterDetails.getText());
+        letter.setProf_email(letterDetails.getProf_email());
+        recommendationLetterRepository.save(letter);
         return "Recommendation Letter Updated";
     }
 
