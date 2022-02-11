@@ -30,7 +30,7 @@
 
 
                     <div class="form-group" style="color: #FFFFFF">
-                        <label >Όνομα: </label>
+                        <label>Όνομα: </label>
                         <input
                                 type="text"
                                 name="name"
@@ -38,7 +38,6 @@
                                 class="form-control"
                                 placeholder="E.g. Ioannis Papadimitriou"
                         />
-                        <span lang="gr"></span>
                     </div>
 
                     <div class="form-group" style="color: #FFFFFF">
@@ -116,12 +115,12 @@
                                     'mail': document.getElementById('mail').value
                                 };
 
+
                                 var nameformat=/^[α-ζΑ-Ζ]/g;
                                 var mailformat = /[^ ]+@[^ ]+\.[a-z]{2,3}$/;
                                 var email = document.getElementById("email").value;
                                 var mail = document.getElementById("mail").value;
                                 var name= document.getElementById("name").value;
-
 
                                 //check if an element is empty
                                 if (document.getElementById('name').value === "" || !name.match(nameformat)) {
@@ -143,18 +142,18 @@
                                 }
 
                                 if (document.getElementById('mark').value === "") {
-                                    alert("complete all the fields with correct input")
+                                    alert("complete all the fields")
                                     document.getElementById('mark').style.borderColor = " red";
                                     return false
                                 }
-                                if(document.getElementById('mark').value < 0 || document.getElementById('mark').value > 10) {
+                                if (document.getElementById('mark').value < 0 || document.getElementById('mark').value > 10) {
                                     alert("please enter a number between 0 and 10")
                                     document.getElementById('mark').style.borderColor = " red";
                                     return false
                                 }
 
                                 if (document.getElementById('text').value === "") {
-                                    alert("complete all the fields with correct input!")
+                                    alert("complete all the fields!")
                                     document.getElementById('text').style.borderColor = " red";
                                     return false
                                 }
@@ -165,26 +164,26 @@
                                     return false
                                 }
 
+                                var json = JSON.stringify(Request);
+                                var rid=sessionStorage.getItem("rid");
+                                var display=sessionStorage.getItem("display");
+                                let xhr = new XMLHttpRequest();
+                                xhr.open("PUT", `http://localhost:8080/editRequest/` + rid, true);
+                                xhr.setRequestHeader('Content-type', 'application/json;');
 
-                                var xhr = new XMLHttpRequest();
-                                xhr.open("POST", 'http://localhost:8080/addRequest', true);
-                                xhr.setRequestHeader("Content-Type", "application/json");
 
-                                xhr.onreadystatechange = function() {
-                                    if (xhr.readyState == 4) {
-                                        if (xhr.status == 200) {
-                                            alert(xhr.responseText);
-                                            location.href = "http://localhost:8080/homepage#mainpage";
-                                        }
+                                xhr.onload = function () {
+
+                                    if (xhr.readyState == 4 && xhr.status == "200") {
+                                        alert(xhr.responseText);
+                                        location.href = "http://localhost:8080/homepage#mainpage";
+
+                                    } else {
+                                        return null;
                                     }
-
-                                };
-
-                                xhr.send(JSON.stringify(Request));
-
-
+                                }
+                                xhr.send(json);
                             });
-
                         });
                     </script>
 

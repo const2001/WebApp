@@ -60,6 +60,13 @@ public class Controller {
 
     }
 
+    @GetMapping("/editRequestPage/{requestId}")
+    public String getEditRequest() {
+
+        return "editRequestPage";
+
+    }
+
     @GetMapping("/acceptedRequestsPage")
     public String getAcceptedRequests() {
 

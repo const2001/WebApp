@@ -66,7 +66,7 @@
                                     const results = JSON.parse(xhr.responseText);
                                     const item = results[0];
                                     try {
-                                        divElem.innerHtml = `${item.id} ${item.uid} ${item.text} ${item.mark} ${item.mail} `;
+                                        divElem.innerHtml = `${item.id} ${item.name} ${item.text} ${item.mark} ${item.mail} `;
                                         console.log(divElem.innerHtml);
                                     } catch (err) {
                                         alert('You dont have any pending request');
@@ -89,7 +89,7 @@
                                         var cellA7 = AllNewRow.insertCell(6);
 
                                         cellA1.innerHTML = item.id;
-                                        cellA2.innerHTML = item.uid;
+                                        cellA2.innerHTML = item.name;
                                         cellA3.innerHTML = item.text;
                                         cellA4.innerHTML = item.mark;
                                         cellA5.innerHTML = item.mail;

@@ -73,15 +73,21 @@
                                     'email': sessionStorage.getItem("emailEx"),
                                     'text': document.getElementById('text').value
                                 };
+
+                                var nameformat=/^[α-ζΑ-Ζ]/g;
+                                var mailformat = /[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+                                var prof_email = document.getElementById("email").value;
+                                var name= document.getElementById("name").value;
+
                                 //check if an element is empty
-                                if (document.getElementById('name').value == "") {
-                                    alert("complete all the fields!")
-                                    document.getElementById('name').value
+                                if (document.getElementById('name').value === "" || !name.match(nameformat)) {
+                                    alert("complete all the fields with correct input!")
+                                    document.getElementById('name').style.borderColor = " red";
                                     return false
                                 }
 
-                                if (document.getElementById('prof_email').value == "") {
-                                    alert("complete all the fields!")
+                                if (document.getElementById('prof_email').value == "" || !prof_email.match(emailformat)) {
+                                    alert("complete all the fields with corret input!")
                                     document.getElementById('prof_email').value
                                     return false
                                 }
