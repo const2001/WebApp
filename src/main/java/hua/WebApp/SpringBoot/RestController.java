@@ -193,18 +193,6 @@ public class RestController {
         }
         recommendationLetterRepository.deleteById(letterId);
     }
-    private String hasRole(){
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String role;
-        if (principal instanceof UserDetails) {
-            role = ((UserDetails)principal).getAuthorities().toString();
 
-
-        } else {
-            role = principal.toString();
-
-        }
-        return role;
-    }
 
 }
