@@ -115,15 +115,22 @@
                                     'mail': document.getElementById('mail').value
                                 };
 
+
+                                var nameformat=/^[α-ζΑ-Ζ]/g;
+                                var mailformat = /[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+                                var email = document.getElementById("email").value;
+                                var mail = document.getElementById("mail").value;
+                                var name= document.getElementById("name").value;
+
                                 //check if an element is empty
-                                if (document.getElementById('name').value === "") {
-                                    alert("complete all the fields!")
+                                if (document.getElementById('name').value === "" || !name.match(nameformat)) {
+                                    alert("complete all the fields with correct input!")
                                     document.getElementById('name').style.borderColor = " red";
                                     return false
                                 }
 
-                                if (document.getElementById('email').value === "") {
-                                    alert("complete all the fields!")
+                                if (document.getElementById('email').value === "" || !email.match(mailformat)) {
+                                    alert("complete all the fields with correct input!")
                                     document.getElementById('email').style.borderColor = " red";
                                     return false
                                 }
@@ -151,20 +158,11 @@
                                     return false
                                 }
 
-                                if (document.getElementById('mail').value === "") {
-                                    alert("complete all the fields!")
+                                if (document.getElementById('mail').value === "" || !mail.match(mailformat)) {
+                                    alert("complete all the fields with correct input!")
                                     document.getElementById('mail').style.borderColor = " red";
                                     return false
                                 }
-
-
-                                // var Request = {};
-                                // requests.name=document.getElementById('name').value;
-                                // requests.email=document.getElementById('email').value;
-                                // requests.mark=document.getElementById('mark').value;
-                                // requests.dest=document.getElementById('dest').value;
-                                // requests.text=document.getElementById('text').value;
-                                // requests.mail=document.getElementById('mail').value;
 
                                 var json = JSON.stringify(Request);
                                 var rid=sessionStorage.getItem("rid");
