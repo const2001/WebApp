@@ -29,7 +29,7 @@ public class Request {
         this.mail = mail;
         this.text = text;
         this.mark = mark;
-        Dest = dest;
+        this.Dest = dest;
         this.status = status;
 
     }
