@@ -37,6 +37,7 @@
                                 id="name"
                                 class="form-control"
                                 placeholder="E.g. Ioannis Papadimitriou"
+                                className="m-translation-card__native-field-label"
                         />
                         <span lang="gr"></span>
                     </div>
@@ -116,7 +117,7 @@
                                     'mail': document.getElementById('mail').value
                                 };
 
-                                var nameformat=/^[α-ζΑ-Ζ]/g;
+                                var nameformat= /^[α-ωΑ-Ω\s]*$/;
                                 var mailformat = /[^ ]+@[^ ]+\.[a-z]{2,3}$/;
                                 var email = document.getElementById("email").value;
                                 var mail = document.getElementById("mail").value;

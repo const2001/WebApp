@@ -12,9 +12,9 @@ INSERT INTO users (id,active,password,roles,user_name) VALUES (8,true,'$2a$12$a9
 INSERT INTO users (id,active,password,roles,user_name) VALUES (9,true,'$2a$12$a9UeVEbTJoETWLd3LCBRHeC1ep6AMRWZP0NX/qwd/meWnIskLMKiC','ROLE_PROFESSOR','adonis'); --password : pass
 
 --Request Hardcoded data
-INSERT INTO requests (id,name,mark,email,Dest,status,Uid, text, mail) VALUES (100,'john', 8, 'john@gmail.com','vaggelis', 'Pending', 'john', 'Συστατική επιστολή για δουλειά', 'company4@gmail.com'); --password: papi
-INSERT INTO requests (id,name,mark,email,Dest,status,Uid, text, mail) VALUES (200,'john', 7, 'john@gmail.com','vaggelis', 'Pending', 'john','Συστατική επιστολή για μεταπτυχιακό', 'university@gmail.com'); --password: papi
-INSERT INTO requests (id,name,mark,email,Dest,status,Uid, text, mail) VALUES (300,'Eleni', 7, 'eleni@gmail.com','vaggelis', 'Pending', 'eleni','Συστατική επιστολή για εταιρεία', 'company5@hotmail.gr'); --password: papi
+INSERT INTO requests (id,name,mark,email,Dest,status,Uid, text, mail) VALUES (100,'Γιάννης', 8, 'john@gmail.com','vaggelis', 'Pending', 'john', 'Συστατική επιστολή για δουλειά', 'company4@gmail.com'); --password: papi
+INSERT INTO requests (id,name,mark,email,Dest,status,Uid, text, mail) VALUES (200,'Γιάννης', 7, 'john@gmail.com','vaggelis', 'Pending', 'john','Συστατική επιστολή για μεταπτυχιακό', 'university@gmail.com'); --password: papi
+INSERT INTO requests (id,name,mark,email,Dest,status,Uid, text, mail) VALUES (300,'Ελένη', 7, 'eleni@gmail.com','vaggelis', 'Pending', 'eleni','Συστατική επιστολή για εταιρεία', 'company5@hotmail.gr'); --password: papi
 
 --Recommendation Letter Hardcoded data
 INSERT INTO recommendation_letters(id,rid,text,uid, email, prof_email) VALUES (400,1,'"C:\Users\vaggelis\Documents\Επιστολή1"','vaggelis', 'company1@gmail.com', 'vag@gmail.com'); --password: pass
