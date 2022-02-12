@@ -18,9 +18,9 @@
     </style>
 
 
-
+</head>
 <body>
-<head>
+<header>
     <div class="row">
         <div class="flex-container">
             <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card" style="background-color: cadetblue" >
@@ -73,10 +73,9 @@
                                     'email': sessionStorage.getItem("emailEx"),
                                     'text': document.getElementById('text').value
                                 };
-
                                 var nameformat=/^[α-ζΑ-Ζ]/g;
                                 var mailformat = /[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-                                var prof_email = document.getElementById("email").value;
+                                var prof_email = document.getElementById("prof_email").value;
                                 var name= document.getElementById("name").value;
 
                                 //check if an element is empty
@@ -86,7 +85,7 @@
                                     return false
                                 }
 
-                                if (document.getElementById('prof_email').value == "" || !prof_email.match(emailformat)) {
+                                if (document.getElementById('prof_email').value == "" || !prof_email.match(mailformat)) {
                                     alert("complete all the fields with corret input!")
                                     document.getElementById('prof_email').value
                                     return false
@@ -110,7 +109,6 @@
 
                                         }
                                     }
-                                    rid= sessionStorage.getItem("rid");
                                     var requests = {};
                                     requests.status = "Done";
                                     var json = JSON.stringify(requests);
@@ -146,6 +144,6 @@
         </div>
     </div>
 
-</head>
+</header>
 </body>
 </html>
