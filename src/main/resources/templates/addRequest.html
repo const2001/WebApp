@@ -51,7 +51,7 @@
                                 name="email"
                                 id="email"
                                 class="form-control"
-                                placeholder="E.g. john@gmail.com"
+                                placeholder="E.g. company@gmail.com"
                         />
                     </div>
 
@@ -59,9 +59,9 @@
                     <label style="color: #FFFFFF">Όνομα καθηγητή: </label>
                     <select name="dest" id="dest" style="color: lightseagreen">
                         <option value="" disabled selected>Επέλεξε καθηγητή</option>
-                        <option value="vaggelis">Βαγγέλης</option>
-                        <option value="xristina">Χριστίνα</option>
-                        <option value="adonis">Αντώνης</option>
+                        <option value="Βαγγέλης">Βαγγέλης</option>
+                        <option value="Χριστίνα">Χριστίνα</option>
+                        <option value="Αντώνης">Αντώνης</option>
                     </select>
 
                     <div class="form-group" style="color: #FFFFFF">
@@ -97,6 +97,7 @@
                                 id="mail"
                                 type="text"
                                 class="form-control"
+                                placeholder="E.g. john@gmail.com"
                         />
 
                     </div>
@@ -126,13 +127,13 @@
 
 
                                 //check if an element is empty
-                                if (document.getElementById('name').value === "" ) {
-                                    alert("complete all the fields with correct input!")
+                                if (document.getElementById('name').value === "" || !name.match(nameformat)) {
+                                    alert("complete all the fields with correct input and greek characters to your name!")
                                     document.getElementById('name').style.borderColor = " red";
                                     return false
                                 }
 
-                                if (document.getElementById('email').value === "" ) {
+                                if (document.getElementById('email').value === "" || !email.match(mailformat)) {
                                     alert("complete all the fields with correct input!")
                                     document.getElementById('email').style.borderColor = " red";
                                     return false
