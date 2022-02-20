@@ -55,7 +55,7 @@
                     <div class="form-group" style="color: #FFFFFF">
                         <label>Συστατική επιστολή: </label>
                         <p></p>
-                        <input type="file" id="text" accept=".doc">
+                        <input type="file" id="text" enctype="multipart/form-data" accept=".doc, .pdf, .docx">
                     </div>
 
 
@@ -110,9 +110,13 @@
 
                                         }
                                     }
+
                                     var requests = {};
                                     requests.status = "Done";
                                     var json = JSON.stringify(requests);
+
+                                    var rid= sessionStorage.getItem("rid")
+
                                     let xhr1 = new XMLHttpRequest();
                                     xhr1.open("PUT", `http://localhost:8080/setRequestStatus/` + rid, true);
                                     xhr1.setRequestHeader('Content-type', 'application/json;');
@@ -127,7 +131,6 @@
                                     }
                                     xhr1.send(json);
 
-
                                 };
 
                                 xhr.send(JSON.stringify(RecommendationLetters));
@@ -140,7 +143,7 @@
 
                 </div>
                 <p></p>
-                <div id="status"></div>
+<!--                <div id="status"></div>-->
             </div>
         </div>
     </div>
