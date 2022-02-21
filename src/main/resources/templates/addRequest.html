@@ -46,7 +46,6 @@
                     <div class="form-group" style="color: #FFFFFF">
                         <label>Email: </label>
                         <input
-                                pattern="(?!test@test\.com$)[a-z0-9._%+-]{3,}@[a-z]{3,}\.[a-z]{2,}(?:\.[a-z]{2,})?"
                                 type="text"
                                 name="email"
                                 id="email"
@@ -81,7 +80,6 @@
                     <div class="form-group" style="color: #FFFFFF">
                         <label>Αίτημα: </label>
                         <textarea
-                                pattern="(?!test@test\.com$)[a-z0-9._%+-]{3,}@[a-z]{3,}\.[a-z]{2,}(?:\.[a-z]{2,})?"
                                 type="text"
                                 name="text"
                                 id="text"
@@ -107,9 +105,11 @@
                     </button>
 
 
+<!--                    javascript-->
                     <script type="text/javascript">
                         window.addEventListener('load', (event) => {
                             document.getElementById('sendRequest').addEventListener('click', (event) => {
+                                //create object: Request
                                 const Request = {
                                     'name': document.getElementById('name').value,
                                     'email': document.getElementById('email').value,
@@ -126,7 +126,7 @@
                                 var name= document.getElementById("name").value;
 
 
-                                //check if an element is empty
+                                //check if an element is empty or has worn input and make red the border color
                                 if (document.getElementById('name').value === "" || !name.match(nameformat)) {
                                     alert("complete all the fields with correct input and greek characters to your name!")
                                     document.getElementById('name').style.borderColor = " red";
@@ -177,6 +177,7 @@
                                     if (xhr.readyState == 4) {
                                         if (xhr.status == 200) {
                                             alert(xhr.responseText);
+                                            //after the submit go to main page
                                             location.href = "http://localhost:8080/homepage#mainpage";
                                         }
                                     }
@@ -184,10 +185,7 @@
                                 };
 
                                 xhr.send(JSON.stringify(Request));
-
-
                             });
-
                         });
                     </script>
 

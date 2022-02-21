@@ -28,6 +28,8 @@
             <div class="table-container">
 
                 <div id="MyRequests"></div>
+
+<!--                create a table-->
                 <table class="table" id="display">
                     <thead>
                     <th>Id</th>
@@ -50,8 +52,13 @@
                 </table>
 
                 <div id="searchAllAcceptedRequestsArea"></div>
+
+
+<!--                javascript-->
                 <script>
                     window.addEventListener('load', (event) => {
+
+                        //professor views his accepted requests
                         const xhr = new XMLHttpRequest();
                         xhr.open('GET', 'http://localhost:8080/acceptedRequests', true);
                         xhr.send();
@@ -66,17 +73,16 @@
                                     const item = results[0];
                                     try {
                                         divElem.innerHtml = `${item.id} ${item.name} ${item.text} ${item.mark}, ${item.mail}`;
-
                                         console.log(divElem.innerHtml);
                                     } catch (err) {
                                         alert('You dont have any accepted request');
                                         return false;
                                     }
 
-
+                                    // load the elements from row=1 and then
                                     var row = 1;
-                                    // const items=results;
-                                    //so if its here there is at least on book with that key
+
+                                    //pass the results to dynamic table
                                     results.forEach((item) => {
                                         var display = document.getElementById("display");
                                         var ALLnewRow = display.insertRow(row);
@@ -93,41 +99,37 @@
                                         cellA3.innerHTML = item.text;
                                         cellA4.innerHTML = item.mark;
                                         cellA5.innerHTML = item.mail;
+                                        // 6th cell has the button of making letter
                                         cellA6.innerHTML = "<input th:href=\"{item.id}\" id=\"btn\" type=\"button\" class=\"btn\" value=\"Letter\"/>";
 
                                         row++;
 
-                                        var index, table=document.getElementById('display');
-                                        for(var i=1; i<table.rows.length; i++) {
+                                        var index, table = document.getElementById('display');
+
+                                        //for making recommendation letter press the button of 6th cell
+                                        for (var i = 1; i < table.rows.length; i++) {
                                             table.rows[i].cells[5].onclick = function () {
 
 
-                                                    index = this.parentElement.rowIndex;
-                                                    rid = this.parentElement.cells[0].innerHTML;
-                                                    emailEx= this.parentElement.cells[4].innerHTML; //email ejoterikou forea
+                                                index = this.parentElement.rowIndex;
+                                                rid = this.parentElement.cells[0].innerHTML;
+                                                emailEx = this.parentElement.cells[4].innerHTML; //email ejoterikou forea
 
 
-                                                    button=this.parentElement.cells[3].innerHTML;
-                                                    sessionStorage.setItem("rid", rid);
-                                                    sessionStorage.setItem("emailEx", emailEx);
+                                                //set the rid (id of request) and emailEx (email of external body) and
+                                                // pass it to object: recommendation letter
+                                                sessionStorage.setItem("rid", rid);
+                                                sessionStorage.setItem("emailEx", emailEx);
 
 
-
+                                                //if click on button go to this page
                                                 location.href = "http://localhost:8080/addLetterPage";
-
-
                                             }
-
                                         }
-
                                     });
-
                                 }
-
                             }
-
                         }
-
                     });
 
                 </script>

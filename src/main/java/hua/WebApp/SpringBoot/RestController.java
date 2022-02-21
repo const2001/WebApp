@@ -188,7 +188,7 @@ public class RestController {
         recommendationLetters.removeIf(r -> !r.getUid().equals(GetLoggedInUsername()));
         if (recommendationLetters.isEmpty()){
             throw  new IllegalStateException(
-                    " No Letters found."
+                    "No Letters found."
             );
         }
         return recommendationLetters;

@@ -49,6 +49,7 @@
                 <script>
                     window.addEventListener('load', (event) => {
                         const xhr = new XMLHttpRequest();
+                        //get method for letters with dest with name of professor
                         xhr.open('GET', 'http://localhost:8080/viewLetters', true);
                         xhr.send();
 
@@ -68,9 +69,9 @@
                                         return false;
                                     }
 
+                                    //load the elemenents from row=1 and after
                                     var row = 1;
-                                    // const items=results;
-                                    //so if its here there is at least on book with that key
+
                                     results.forEach((item) => {
                                         var display = document.getElementById("display");
                                         var ALLnewRow = display.insertRow(row);
@@ -92,14 +93,18 @@
 
                                         var index, table=document.getElementById('display');
                                         for(var i=1; i<table.rows.length; i++) {
+                                            //if click on the delete button of 5th cell
                                             table.rows[i].cells[4].onclick = function () {
                                                 let text = "Are you sure you want to delete this recommendation letter?";
+
                                                 if (confirm(text) == true) {
                                                     index = this.parentElement.rowIndex;
-                                                    rid = this.parentElement.cells[0].innerHTML
+                                                    id = this.parentElement.cells[0].innerHTML
                                                     table.deleteRow(index);
                                                     let xhr = new XMLHttpRequest();
-                                                    xhr.open("DELETE", `http://localhost:8080/deleteLetter/` + rid, true);
+
+                                                    //delete method for the letter with the id of first cell
+                                                    xhr.open("DELETE", `http://localhost:8080/deleteLetter/` + id, true);
                                                     xhr.setRequestHeader('Content-type', 'application/json;');
                                                     xhr.onload = function () {
                                                         let question = JSON.parse(xhr.responseText);
@@ -116,12 +121,6 @@
                                                     return null;
                                                 }
                                             };
-
-                                            var hasVal = Object.values(cellA2.innerHTML).includes(sessionStorage.getItem("rid"));
-
-                                            if(hasVal === true){
-                                                sessionStorage.getItem("button").disabled = true;
-                                            }
 
                                         }
 

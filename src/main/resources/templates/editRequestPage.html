@@ -44,7 +44,6 @@
                     <div class="form-group" style="color: #FFFFFF">
                         <label>Email: </label>
                         <input
-                                pattern="(?!test@test\.com$)[a-z0-9._%+-]{3,}@[a-z]{3,}\.[a-z]{2,}(?:\.[a-z]{2,})?"
                                 type="text"
                                 name="email"
                                 id="email"
@@ -79,7 +78,6 @@
                     <div class="form-group" style="color: #FFFFFF">
                         <label>Αίτημα: </label>
                         <textarea
-                                pattern="(?!test@test\.com$)[a-z0-9._%+-]{3,}@[a-z]{3,}\.[a-z]{2,}(?:\.[a-z]{2,})?"
                                 type="text"
                                 name="text"
                                 id="text"
@@ -124,7 +122,7 @@
                                 var mail = document.getElementById("mail").value;
                                 var name= document.getElementById("name").value;
 
-                                //check if an element is empty
+                                //check if an element is empty or if has wrong input and if yes make red the border
                                 if (document.getElementById('name').value === "" || !name.match(nameformat)) {
                                     alert("complete all the fields with correct input and greek characters to your name!")
                                     document.getElementById('name').style.borderColor = " red";
@@ -167,9 +165,13 @@
                                 }
 
                                 var json = JSON.stringify(Request);
+
+                                //get the id of request that clicked on from the table of requestsPage
                                 var rid=sessionStorage.getItem("rid");
-                                var display=sessionStorage.getItem("display");
+
                                 let xhr = new XMLHttpRequest();
+
+                                //edit object with this rid
                                 xhr.open("PUT", `http://localhost:8080/editRequest/` + rid, true);
                                 xhr.setRequestHeader('Content-type', 'application/json;');
 
@@ -178,6 +180,8 @@
 
                                     if (xhr.readyState == 4 && xhr.status == "200") {
                                         alert(xhr.responseText);
+
+                                        //after submit go to main page
                                         location.href = "http://localhost:8080/homepage#mainpage";
 
                                     } else {

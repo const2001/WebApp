@@ -54,6 +54,8 @@
                 <script>
                     window.addEventListener('load', (event) => {
                         const xhr = new XMLHttpRequest();
+
+                        //get method for pending requests
                         xhr.open('GET', 'http://localhost:8080/pendingRequests', true);
                         xhr.send();
 
@@ -74,10 +76,10 @@
                                         return false;
                                     }
 
-
+                                    //load the elements from row=1 and after
                                     var row = 1;
-                                    // const items=results;
-                                    //so if its here there is at least on book with that key
+
+                                    //display the elements on the table
                                     results.forEach((item) => {
                                         var display = document.getElementById("display");
                                         var AllNewRow = display.insertRow(row);
@@ -100,6 +102,8 @@
 
                                         var index, table=document.getElementById('display');
                                         for(var i=1; i<table.rows.length; i++) {
+
+                                            //if click on button of 6th cell, change the status from pending to accepted
                                             table.rows[i].cells[5].onclick = function () {
                                                 let text = "Are you sure you want to accept this recommendation letter?";
                                                 if (confirm(text) == true) {
@@ -113,6 +117,8 @@
                                                     var json = JSON.stringify(requests);
 
                                                     let xhr = new XMLHttpRequest();
+
+                                                    //put method to edit the status of request
                                                     xhr.open("PUT", `http://localhost:8080/setRequestStatus/` + rid, true);
                                                     xhr.setRequestHeader('Content-type', 'application/json;');
 
@@ -133,6 +139,8 @@
                                         }
 
                                         for(var i=1; i<table.rows.length; i++) {
+
+                                            //if click on button of 7th cell, change the status from pending to rejected
                                             table.rows[i].cells[6].onclick = function () {
 
                                                 let text = "Are you sure you want to reject this recommendation letter?";
@@ -145,6 +153,7 @@
                                                     var json = JSON.stringify(requests);
 
                                                     let xhr = new XMLHttpRequest();
+                                                    //put method to edit the status of request
                                                     xhr.open("PUT", `http://localhost:8080/setRequestStatus/` + rid, true);
                                                     xhr.setRequestHeader('Content-type', 'application/json;');
                                                     xhr.onload = function () {
