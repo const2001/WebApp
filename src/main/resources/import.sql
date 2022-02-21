@@ -17,9 +17,3 @@ INSERT INTO requests (id,name,mark,email,Dest,status,Uid, text, mail) VALUES (20
 INSERT INTO requests (id,name,mark,email,Dest,status,Uid, text, mail) VALUES (300,'Ελένη', 7, 'eleni@gmail.com','vaggelis', 'Pending', 'eleni','Συστατική επιστολή για εταιρεία', 'company5@hotmail.gr'); --password: papi
 
 --Recommendation Letter Hardcoded data
-INSERT INTO recommendation_letters(id,rid,text,uid, email, prof_email) VALUES (400,1,'"C:\Users\vaggelis\Documents\Επιστολή1"','vaggelis', 'company1@gmail.com', 'vag@gmail.com'); --password: pass
-INSERT INTO recommendation_letters(id,rid,text,uid, email, prof_email) VALUES (500,2,'"C:\Users\vaggelis\Documents\Επιστολή2"','vaggelis', 'company2@gmail.com', 'vag@gmail.com'); --password: pass
-INSERT INTO recommendation_letters(id,rid,text,uid, email, prof_email) VALUES (600,3,'"C:\Users\vaggelis\Documents\Επιστολή3"','vaggelis', 'company3@gmail.com', 'vag@gmail.com'); --password: pass
-INSERT INTO recommendation_letters(id,rid,text,uid, email, prof_email) VALUES (700,4,'"C:\Users\vaggelis\Documents\Επιστολή4"','vaggelis', 'university1@gmail.com', 'vag@gmail.com'); --password: pass
-INSERT INTO recommendation_letters(id,rid,text,uid, email, prof_email) VALUES (800,5,'"C:\Users\vaggelis\Documents\Επιστολή5"','vaggelis', 'university2@gmail.com', 'vag@gmail.com'); --password: pass
-

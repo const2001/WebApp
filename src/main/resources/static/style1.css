@@ -9,6 +9,7 @@
 
 .card-body{
     text-align:center;
+    margin-bottom: 10px;
 }
 .form-control{
     text-align:center;
@@ -33,9 +34,8 @@
 }
 
 .flex-container{
-    position: center;
-    width:600px;
-    margin:20% 30%;
-    margin-top: 5%;
+    width:1000px;
+    margin:01% 30%;
+
 
 }
