@@ -26,8 +26,6 @@ public class Controller {
     }
 
     //Student Endpoints
-
-
     @GetMapping("/")
     public String home(){
         hasRole();
