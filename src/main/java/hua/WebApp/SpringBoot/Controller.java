@@ -46,31 +46,31 @@ public class Controller {
         String error = "error message";
         System.out.println(hasRole());
         if(hasRole().equals("[ROLE_STUDENT]"))
-            return "StudentPage";
+            return "Student/StudentPage";
 
         else if(hasRole().equals("[ROLE_PROFESSOR]"))
-            return "ProfessorPage";
+            return "Professor/ProfessorPage";
         return error;
     }
 
     @GetMapping("/requestsPage")
     public String getRequests() {
 
-        return "Requests";
+        return "Student/Requests";
 
     }
 
     @GetMapping("/editRequestPage/{requestId}")
     public String getEditRequest() {
 
-        return "editRequestPage";
+        return "Student/editRequestPage";
 
     }
 
     @GetMapping("/acceptedRequestsPage")
     public String getAcceptedRequests() {
 
-        return "acceptedRequests";
+        return "Professor/acceptedRequests";
 
     }
 
@@ -78,7 +78,7 @@ public class Controller {
     @GetMapping("/addRequestPage")
     public String getAddRequest() {
 
-        return "addRequest";
+        return "Student/addRequest";
     }
 
 
@@ -86,21 +86,21 @@ public class Controller {
     @GetMapping("/pendingRequestsPage")
     public String getPendingRequestsPage(){
 
-        return "pendingRequests";
+        return "Professor/pendingRequests";
     }
 
 
     @GetMapping("/addLetterPage")
     public String getAddLetterPage(){
 
-        return "recommendation letter";
+        return "Professor/recommendation letter";
     }
 
 
     @GetMapping("/viewLettersPage")
     public String getLettersPage(){
 
-        return "letters";
+        return "Professor/letters";
     }
 
     private String hasRole(){
