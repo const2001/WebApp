@@ -27,18 +27,11 @@ public class Controller {
 
     //Student Endpoints
 
-
     @GetMapping("/")
     public String home(){
         hasRole();
         return "redirect:/homepage";
     }
-
-//    @GetMapping("/")
-//    public String home(){
-//        hasRole();
-//        return "redirect:/homepage";
-//    }
 
 
     @GetMapping("/homepage")
@@ -82,7 +75,9 @@ public class Controller {
     }
 
 
+
     //Professor Endpoints
+
     @GetMapping("/pendingRequestsPage")
     public String getPendingRequestsPage(){
 
@@ -109,15 +104,12 @@ public class Controller {
         if (principal instanceof UserDetails) {
             role = ((UserDetails)principal).getAuthorities().toString();
 
-
         } else {
             role = principal.toString();
 
         }
         return role;
     }
-
-
 
 
 }

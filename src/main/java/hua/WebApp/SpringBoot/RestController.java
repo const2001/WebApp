@@ -131,7 +131,6 @@ public class RestController {
     @GetMapping("/pendingRequests")
     public List<Request> getAllPendingRequests(){
 
-
         List<Request> pendingRequests = requestRepository.findAll();
 
         pendingRequests.removeIf(r -> !r.getDest().equals(GetLoggedInUsername()) || !r.getStatus().equals("Pending") );
@@ -139,9 +138,9 @@ public class RestController {
         return pendingRequests;
     }
 
+
     @GetMapping("/acceptedRequests")
     public List<Request> getAllAcceptedRequests(){
-
 
         List<Request> acceptedRequests = requestRepository.findAll();
 
@@ -149,6 +148,7 @@ public class RestController {
 
         return acceptedRequests;
     }
+
 
     @PutMapping("/setRequestStatus/{requestId}")
     public String setRequestStatus(@PathVariable("requestId") Long requestId,
@@ -172,6 +172,8 @@ public class RestController {
 
         return  "Request Updated";
     }
+
+
     @PostMapping("/addLetter")
     public String addRecommendationLetter (@RequestBody RecommendationLetter rl){
         rl.setUid(GetLoggedInUsername());
@@ -179,9 +181,9 @@ public class RestController {
         return "Recommendation Letter Saved";
     }
 
+
     @GetMapping("/viewLetters")
     public List<RecommendationLetter> getAllLetterRequests(){
-
 
         List<RecommendationLetter> recommendationLetters = recommendationLetterRepository.findAll();
 
@@ -217,6 +219,7 @@ public class RestController {
         recommendationLetterRepository.save(letter);
         return "Recommendation Letter Updated";
     }
+
 
     @DeleteMapping( "deleteLetter/{letterId}")
     public void deleteLetter(@PathVariable("letterId") Long letterId){

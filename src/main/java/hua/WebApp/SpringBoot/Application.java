@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public class Application {
 
 
-
 	public Application() {
 
 	}
