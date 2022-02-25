@@ -32,11 +32,7 @@ public class Controller {
         return "redirect:/homepage";
     }
 
-//    @GetMapping("/")
-//    public String home(){
-//        hasRole();
-//        return "redirect:/homepage";
-//    }
+
 
 
     @GetMapping("/homepage")
@@ -48,6 +44,9 @@ public class Controller {
 
         else if(hasRole().equals("[ROLE_PROFESSOR]"))
             return "Professor/ProfessorPage";
+
+        else if(hasRole().equals("[ROLE_SECRETARY]"))
+            return "Secretary/SecretaryPage";
         return error;
     }
 
@@ -100,6 +99,27 @@ public class Controller {
 
         return "Professor/letters";
     }
+
+    //Secretary Endpoints
+    @GetMapping("/createUserPage")
+    public String getCreateUser() {
+
+        return "Secretary/createUser";
+    }
+
+    @GetMapping("/viewUsersPage")
+    public String getUser() {
+
+        return "Secretary/users";
+    }
+
+    @GetMapping("/editUserPage/{userId}")
+    public String getEditUser() {
+
+        return "Secretary/editUser";
+
+    }
+
 
     private String hasRole(){
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

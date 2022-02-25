@@ -7,6 +7,7 @@ import hua.WebApp.SpringBoot.entities.Request.Request;
 import hua.WebApp.SpringBoot.entities.Request.RequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
@@ -236,6 +237,44 @@ public class RestController {
         }
         recommendationLetterRepository.deleteById(letterId);
     }
+
+    //secretary's endpoints
+//    @PostMapping("/createUser")
+//    public String createUser (@RequestBody User u){
+//        u.setUid(GetLoggedInUsername());
+//        UserRepository.save(u);
+//        return "Recommendation Letter Saved";
+//    }
+
+
+//    @GetMapping("/users")
+//    public List<User> getAllUsers(){
+//
+//        List<User> users = UserRepository.findAll();
+//
+//        return User;
+//    }
+
+
+//    @PutMapping("/editUser/{userId}")
+//    public String editUser(@PathVariable("userId") Long userId,
+//                             @Valid @RequestBody RecommendationLetter userDetails) {
+//        boolean exists = UserRepository.existsById(userId);
+//
+//        Optional<User> l = userRepository.findById(userId);
+//        if (!l.get().getUid().equals(GetLoggedInUsername())) {
+//            throw new IllegalStateException(
+//                    "You dont have access to change the user with id: " + userId
+//            );
+//        }
+//        User user =  u.get();
+//        user.setEmail(userDetails.getEmail()); ;
+//        user.setText(userDetails.getText());
+//        user.setProf_email(userDetails.getProf_email());
+//        UserRepository.save(user);
+//        return "User Updated";
+//    }
+
 
 
 }

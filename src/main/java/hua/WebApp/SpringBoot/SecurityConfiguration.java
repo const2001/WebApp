@@ -77,7 +77,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/deleteLetter/{letterId}").hasRole("PROFESSOR")
                 .antMatchers("/viewLetters").hasRole("PROFESSOR")
                 .antMatchers("/viewLettersPage").hasRole("PROFESSOR")
-                .antMatchers("/homepage").hasAnyRole("STUDENT","PROFESSOR")
+                .antMatchers("/homepage").hasAnyRole("STUDENT","PROFESSOR", "SECRETARY")
+                .antMatchers("/createUser").hasRole("SECRETARY")
+                .antMatchers("/createUserPage").hasRole("SECRETARY")
+                .antMatchers("/editUser/{userId}").hasRole("SECRETARY")
+                .antMatchers("/deleteUser/{userId}").hasRole("SECRETARY")
                 .and().formLogin()
                 .and().csrf().disable();
         //   http

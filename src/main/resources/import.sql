@@ -16,4 +16,5 @@ INSERT INTO requests (id,name,mark,email,Dest,status,Uid, text, mail) VALUES (10
 INSERT INTO requests (id,name,mark,email,Dest,status,Uid, text, mail) VALUES (200,'Γιάννης', 7, 'john@gmail.com','vaggelis', 'Pending', 'john','Συστατική επιστολή για μεταπτυχιακό', 'university@gmail.com'); --password: papi
 INSERT INTO requests (id,name,mark,email,Dest,status,Uid, text, mail) VALUES (300,'Ελένη', 7, 'eleni@gmail.com','vaggelis', 'Pending', 'eleni','Συστατική επιστολή για εταιρεία', 'company5@hotmail.gr'); --password: papi
 
---Recommendation Letter Hardcoded data
+--Administrator Hardcoded data
+INSERT INTO users (id,active,password,roles,user_name) VALUES (100,true,'$2a$12$a9UeVEbTJoETWLd3LCBRHeC1ep6AMRWZP0NX/qwd/meWnIskLMKiC','ROLE_SECRETARY','secretary'); --password : pass
