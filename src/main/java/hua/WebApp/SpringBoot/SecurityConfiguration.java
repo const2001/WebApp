@@ -41,10 +41,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         provider.setPasswordEncoder(getPasswordEncoder());
         return provider;
     }
-    //    @Override
+//    @Override
 //    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //           auth.userDetailsService(userDetailsService);
 //    }
+
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
@@ -56,6 +57,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -90,6 +92,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // do not use any default headers unless explicitly listed
 
     }
+
     private AuthenticationSuccessHandler successHandler() {
         return new AuthenticationSuccessHandler() {
 
@@ -102,6 +105,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             }
         };
     }
+
     private AuthenticationFailureHandler failureHandler() {
         return new AuthenticationFailureHandler() {
             @Override
