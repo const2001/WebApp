@@ -36,7 +36,7 @@
                         <input
                                 type="text"
                                 name="name"
-                                id="user_name"
+                                id="userName"
                                 class="input-box"
                                 placeholder="george"
                                 className="m-translation-card__native-field-label"
@@ -63,19 +63,19 @@
                         />
                     </div>
                     <div class="form-group" style="color: #FFFFFF">
-                            <label>Password: </label>
-                            <input
-                                    id="password"
-                                    type="text"
-                                    class="input-box"
+                        <label>Password: </label>
+                        <input
+                                id="password2"
+                                type="text"
+                                class="input-box"
 
-                            />
+                        />
 
                     </div>
 
                     <div class="form-group" style="color: #FFFFFF">
-                    <p><span><input type="checkbox"></span> I agree to the terms of services</p>
-                        </div>
+                        <p><span><input type="checkbox"></span> I agree to the terms of services</p>
+                    </div>
 
                     <button type="submit" class="btn" id="sendUser">
                         Δημιουργία
@@ -84,24 +84,28 @@
 
                     <!--                    javascript-->
                     <script type="text/javascript">
+                        // const bcrypt = require('bcrypt');
+
                         window.addEventListener('load', (event) => {
-                            document.getElementById('sendRequest').addEventListener('click', (event) => {
-                                //create object: Request
-                                const users = {
-                                    'user_name': document.getElementById('user_name').value,
+                            document.getElementById('sendUser').addEventListener('click', (event) => {
+
+
+                                //create object: User
+                                const User = {
+
+                                    'userName': document.getElementById('userName').value,
+                                    'password2': document.getElementById('password2').value,
                                     'roles': document.getElementById('roles').value,
-                                    'password': document.getElementById('password').value,
+
                                 };
 
                                 var user_nameformat= /[a-z]/;
-
                                 var name= document.getElementById("userName").value;
 
-
                                 //check if an element is empty or has worn input and make red the border color
-                                if (document.getElementById('user_name').value === "" || !name.match(user_nameformat)) {
+                                if (document.getElementById('userName').value === "" || !name.match(user_nameformat)) {
                                     alert("complete all the fields with correct input")
-                                    document.getElementById('user_name').style.borderColor = " red";
+                                    document.getElementById('userName').style.borderColor = " red";
                                     return false
                                 }
 
@@ -123,15 +127,16 @@
                                     return false
                                 }
 
-                                if (!document.getElementById('password').value.match(document.getElementById('password1').value) ) {
+                                if (!document.getElementById('password2').value.match(document.getElementById('password1').value) ) {
                                     alert("passwords are different!")
-                                    document.getElementById('password').style.borderColor = " red";
+                                    document.getElementById('password2').style.borderColor = " red";
                                     return false
                                 }
 
 
+
                                 var xhr = new XMLHttpRequest();
-                                xhr.open("POST", 'http://localhost:8080/addRequest', true);
+                                xhr.open("POST", 'http://localhost:8080/register', true);
                                 xhr.setRequestHeader("Content-Type", "application/json");
 
                                 xhr.onreadystatechange = function() {
@@ -139,13 +144,14 @@
                                         if (xhr.status == 200) {
                                             alert(xhr.responseText);
                                             //after the submit go to main page
+
                                             location.href = "http://localhost:8080/homepage#mainpage";
                                         }
                                     }
 
                                 };
+                                xhr.send(JSON.stringify(User));
 
-                                xhr.send(JSON.stringify(Request));
                             });
                         });
                     </script>

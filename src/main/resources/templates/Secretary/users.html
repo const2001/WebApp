@@ -50,7 +50,7 @@
                     </tbody>
                 </table>
 
-                <div id="searchAllAcceptedRequestsArea"></div>
+                <div id="searchAllUsersArea"></div>
 
 
                 <!--                javascript-->
@@ -67,11 +67,11 @@
                         xhr.onreadystatechange = function () {
                             if (xhr.readyState == 4) {
                                 if (xhr.status == 200) {
-                                    let divElem = document.getElementById('searchAllAcceptedRequestsArea');
+                                    let divElem = document.getElementById('searchAllUsersArea');
                                     const results = JSON.parse(xhr.responseText);
                                     const item = results[0];
                                     try {
-                                        divElem.innerHtml = `${item.id} ${item.roles} ${item.user_name}`;
+                                        divElem.innerHtml = `${item.id} ${item.roles} ${item.userName}`;
                                         console.log(divElem.innerHtml);
                                     } catch (err) {
                                         alert('There are not users in the system');
@@ -83,6 +83,7 @@
 
                                     //pass the results to dynamic table
                                     results.forEach((item) => {
+
                                         var display = document.getElementById("display");
                                         var ALLnewRow = display.insertRow(row);
 
@@ -93,12 +94,12 @@
                                         var cellA5 = ALLnewRow.insertCell(4);
 
                                         cellA1.innerHTML = item.id;
-                                        cellA2.innerHTML = item.name;
-                                        cellA3.innerHTML = item.text;
+                                        cellA2.innerHTML = item.roles;
+                                        cellA3.innerHTML = item.userName;
 
-                                        // 6th cell has the button of making letter
-                                        cellA4.innerHTML = "<input th:href=\"{item.id}\" id=\"btn\" type=\"button\" class=\"btn\" value=\"Edit\" />";
-                                        cellA5.innerHTML = "<input th:href=\"{item.id}\" id=\"btn\" type=\"button\" class=\"btn\" value=\"Delete\" />";
+
+                                        cellA4.innerHTML = "<input th:href=\"@{http://localhost:8080/editUser/{userId}}\" id=\"btn\" type=\"button\" class=\"btn\" value=\"Edit\" />";
+                                        cellA5.innerHTML = "<input th:href=\"@{http://localhost:8080/deleteUser/{UserId}}\" id=\"btn\" type=\"button\" class=\"btn\" value=\"Delete\" />";
 
                                         row++;
 
@@ -106,31 +107,32 @@
                                         for(var i=1; i<table.rows.length; i++){
                                             //if click on button of 5th cell
                                             table.rows[i].cells[4].onclick=function() {
+                                                let text = "Are you sure you want to delete this user?";
 
+                                                let id;
+                                                if (confirm(text) == true) {
 
-                                                    if (confirm(text) == true) {
+                                                    index = this.parentElement.rowIndex;
+                                                    id = this.parentElement.cells[0].innerHTML
+                                                    table.deleteRow(index);
+                                                    let xhr = new XMLHttpRequest();
 
-                                                        index = this.parentElement.rowIndex;
-                                                        id = this.parentElement.cells[0].innerHTML
-                                                        table.deleteRow(index);
-                                                        let xhr = new XMLHttpRequest();
-
-                                                        //delete method for request with this id
-                                                        xhr.open("DELETE", `http://localhost:8080/deleteUser/` + id, true);
-                                                        xhr.setRequestHeader('Content-type', 'application/json;');
-                                                        xhr.onload = function () {
-                                                            let question = JSON.parse(xhr.responseText);
-                                                            if (xhr.readyState == 4 && xhr.status == "200") {
-                                                                console.table(display);
-                                                            } else {
-                                                                // console.error(question);
-                                                            }
+                                                    //delete method for request with this id
+                                                    xhr.open("DELETE", `http://localhost:8080/deleteUser/` + id, true);
+                                                    xhr.setRequestHeader('Content-type', 'application/json;');
+                                                    xhr.onload = function () {
+                                                        // let question = JSON.parse(xhr.responseText);
+                                                        if (xhr.readyState == 4 && xhr.status == "200") {
+                                                            console.table(display);
+                                                        } else {
+                                                            // console.error(question);
                                                         }
-                                                        xhr.send(null);
-
-                                                    } else {
-                                                        return null;
                                                     }
+                                                    xhr.send(null);
+
+                                                } else {
+                                                    return null;
+                                                }
                                             };
 
                                             //if click on the button of 4th cell

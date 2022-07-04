@@ -2,6 +2,8 @@ package hua.WebApp.SpringBoot.entities.User;
 
 import javax.persistence.*;
 
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+
 @Entity
 @Table(name ="Users")
 public class User {
@@ -63,4 +65,8 @@ public class User {
     public void setRoles(String roles) {
         this.roles = roles;
     }
+
+    public void setAttribute(String message, String s) {
+    }
 }
+

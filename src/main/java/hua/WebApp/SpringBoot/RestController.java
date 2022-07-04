@@ -5,13 +5,14 @@ import hua.WebApp.SpringBoot.entities.RecommendationLetter.RecommendationLetter;
 import hua.WebApp.SpringBoot.entities.RecommendationLetter.RecommendationLetterRepository;
 import hua.WebApp.SpringBoot.entities.Request.Request;
 import hua.WebApp.SpringBoot.entities.Request.RequestRepository;
+import hua.WebApp.SpringBoot.entities.User.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -21,12 +22,13 @@ public class RestController {
 
     @Autowired
     UserDetailsService userDetailsService;
-
+    private final UserRepository userRepository;
     private final RequestRepository requestRepository;
     private final RecommendationLetterRepository recommendationLetterRepository;
 
-    public RestController(UserDetailsService userDetailsService, RequestRepository requestRepository, RecommendationLetterRepository recommendationLetterRepository) {
+    public RestController(UserDetailsService userDetailsService, UserRepository userRepository, RequestRepository requestRepository, RecommendationLetterRepository recommendationLetterRepository) {
         this.userDetailsService = userDetailsService;
+        this.userRepository = userRepository;
         this.requestRepository = requestRepository;
         this.recommendationLetterRepository = recommendationLetterRepository;
     }
@@ -241,22 +243,32 @@ public class RestController {
         recommendationLetterRepository.deleteById(letterId);
     }
 
-    //secretary's endpoints
-//    @PostMapping("/createUser")
-//    public String createUser (@RequestBody User u){
-//        u.setUid(GetLoggedInUsername());
-//        UserRepository.save(u);
-//        return "Recommendation Letter Saved";
-//    }
+    //    secretary's endpoints
+    @PostMapping("/register")
+    public String register(@RequestBody User u) {
+
+        System.out.println(u);
+        u.setActive(true);
+        userRepository.save(u);
+
+        u.setAttribute("message", "User Register Sucessfully!");
+        return "User Register Sucessfully!";
+    }
 
 
-//    @GetMapping("/users")
-//    public List<User> getAllUsers(){
-//
-//        List<User> users = UserRepository.findAll();
-//
-//        return User;
-//    }
+
+    @GetMapping("/users")
+    public List<User> getAllUsers(){
+
+        List<hua.WebApp.SpringBoot.entities.User.User> users = userRepository.findAll();
+
+        if (users.isEmpty()){
+            throw  new IllegalStateException(
+                    "No users found."
+            );
+        }
+        return users;
+    }
 
 
 //    @PutMapping("/editUser/{userId}")
@@ -267,7 +279,7 @@ public class RestController {
 //        Optional<User> l = userRepository.findById(userId);
 //        if (!l.get().getUid().equals(GetLoggedInUsername())) {
 //            throw new IllegalStateException(
-//                    "You dont have access to change the user with id: " + userId
+//                    "You don't have access to change the user with id: " + userId
 //            );
 //        }
 //        User user =  u.get();
@@ -278,6 +290,20 @@ public class RestController {
 //        return "User Updated";
 //    }
 
+    @DeleteMapping( "deleteUser/{userId}")
+    public void deleteUser(@PathVariable("userId") Long userId){
+        userRepository.findById(userId);
+
+        boolean exists =  userRepository.existsById(userId);
+        if (!exists){
+            throw  new IllegalStateException(
+                    "student with id : "+ userId + " does not exists"
+            );
+        }
+        Optional<User> user = userRepository.findById(userId);
+
+        userRepository.deleteById(userId);
+    }
 
 
 }
