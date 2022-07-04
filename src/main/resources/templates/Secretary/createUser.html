@@ -65,7 +65,7 @@
                     <div class="form-group" style="color: #FFFFFF">
                         <label>Password: </label>
                         <input
-                                id="password2"
+                                id="password"
                                 type="text"
                                 class="input-box"
 
@@ -84,17 +84,17 @@
 
                     <!--                    javascript-->
                     <script type="text/javascript">
-                        // var bcrypt = require('bcrypt');
 
                         window.addEventListener('load', (event) => {
                             document.getElementById('sendUser').addEventListener('click', (event) => {
 
+                                // const bcrypt = getPasswordEncoder();
 
                                 //create object: User
                                 const User = {
 
                                     'userName': document.getElementById('userName').value,
-                                    'password2': document.getElementById('password2').value,
+                                    'password': document.getElementById('password').value,
                                     'roles': document.getElementById('roles').value,
 
                                 };
@@ -127,9 +127,9 @@
                                     return false
                                 }
 
-                                if (!document.getElementById('password2').value.match(document.getElementById('password1').value) ) {
+                                if (!document.getElementById('password').value.match(document.getElementById('password1').value) ) {
                                     alert("passwords are different!")
-                                    document.getElementById('password2').style.borderColor = " red";
+                                    document.getElementById('password').style.borderColor = " red";
                                     return false
                                 }
 
