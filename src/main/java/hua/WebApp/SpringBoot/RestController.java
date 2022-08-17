@@ -1,6 +1,7 @@
 package hua.WebApp.SpringBoot;
 
 
+import antlr.BaseAST;
 import hua.WebApp.SpringBoot.entities.RecommendationLetter.RecommendationLetter;
 import hua.WebApp.SpringBoot.entities.RecommendationLetter.RecommendationLetterRepository;
 import hua.WebApp.SpringBoot.entities.Request.Request;
@@ -248,11 +249,12 @@ public class RestController {
     public String register(@RequestBody User u) {
 
         System.out.println(u);
-        u.setActive(true);
+
         userRepository.save(u);
 
         u.setAttribute("message", "User Register Sucessfully!");
         return "User Register Sucessfully!";
+
     }
 
 
@@ -262,6 +264,7 @@ public class RestController {
 
         List<hua.WebApp.SpringBoot.entities.User.User> users = userRepository.findAll();
 
+//            users.removeIf(r -> !r.getUid().equals(GetLoggedInUsername()));
         if (users.isEmpty()){
             throw  new IllegalStateException(
                     "No users found."
@@ -271,24 +274,27 @@ public class RestController {
     }
 
 
-//    @PutMapping("/editUser/{userId}")
-//    public String editUser(@PathVariable("userId") Long userId,
-//                             @Valid @RequestBody RecommendationLetter userDetails) {
-//        boolean exists = UserRepository.existsById(userId);
-//
-//        Optional<User> l = userRepository.findById(userId);
-//        if (!l.get().getUid().equals(GetLoggedInUsername())) {
-//            throw new IllegalStateException(
-//                    "You don't have access to change the user with id: " + userId
-//            );
-//        }
-//        User user =  u.get();
-//        user.setEmail(userDetails.getEmail()); ;
-//        user.setText(userDetails.getText());
-//        user.setProf_email(userDetails.getProf_email());
-//        UserRepository.save(user);
-//        return "User Updated";
-//    }
+    @PutMapping("/editUser/{userId}")
+    public String editUser(@PathVariable("userId") Long userId,
+                             @Valid @RequestBody User userDetails) {
+        boolean exists = userRepository.existsById(userId);
+        if (!exists) {
+            throw new IllegalStateException(
+                    "user with id : " + userId + " does not exists"
+            );
+        }
+        Optional<User> u = userRepository.findById(userId);
+        if (!u.get().getID().equals(GetLoggedInUsername())) {
+            throw new IllegalStateException(
+                    "You don't have access to change the user with id: " + userId
+            );
+        }
+        User user =  u.get();
+        user.setRoles(userDetails.getRoles()); ;
+        user.setUserName(userDetails.getUserName());
+        userRepository.save(user);
+        return "User Updated";
+    }
 
     @DeleteMapping( "deleteUser/{userId}")
     public void deleteUser(@PathVariable("userId") Long userId){

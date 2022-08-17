@@ -117,7 +117,7 @@ public class Controller {
     @GetMapping("/editUserPage/{userId}")
     public String getEditUser() {
 
-        return "Secretary/editUser";
+        return "Secretary/editUserPage";
 
     }
 

@@ -25,7 +25,7 @@
         <div class="container">
             <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card" style="background-color: cadetblue" >
 
-                <h1 class="text-center" style="color: #fdfbff">Φόρμα Αιτήματος</h1>
+                <h1 class="text-center" style="color: #fdfbff">Επεξεργασία χρήστη</h1>
 
                 <div class="card-body">
 
@@ -35,7 +35,7 @@
                         <input
                                 type="text"
                                 name="name"
-                                id="user_name"
+                                id="userName"
                                 class="input-box"
                                 placeholder="george"
                                 className="m-translation-card__native-field-label"
@@ -61,18 +61,18 @@
                         window.addEventListener('load', (event) => {
                             document.getElementById('sendRequest').addEventListener('click', (event) => {
                                 const User = {
-                                    'user_name': document.getElementById('user_name').value,
+                                    'userName': document.getElementById('userName').value,
                                     'roles': document.getElementById('roles').value,
                                 };
 
 
-                                var user_nameformat=/^[α-ωΑ-Ω\s]*$/;
-                                var name= document.getElementById("name").value;
+                                var user_nameformat=/^[a-zA-Z\s]*$/;
+                                var name= document.getElementById("userName").value;
 
                                 //check if an element is empty or has worn input and make red the border color
-                                if (document.getElementById('user_name').value === "" || !name.match(user_nameformat)) {
+                                if (document.getElementById('userName').value === "" || !name.match(user_nameformat)) {
                                     alert("complete all the fields with correct input!")
-                                    document.getElementById('user_name').style.borderColor = " red";
+                                    document.getElementById('userName').style.borderColor = " red";
                                     return false
                                 }
 
